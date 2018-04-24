@@ -1,11 +1,20 @@
 package com.apicrm.controller;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 import javax.servlet.http.HttpSession;
+import javax.xml.bind.DatatypeConverter;
 
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.google.gson.Gson;
@@ -19,5 +28,38 @@ public class ApiController {
 	public ResponseEntity<?> sendEmailChangeCode(HttpSession session) {
 
 		return ResponseEntity.ok(gson.toJson("hello"));
+	}
+
+
+	@RequestMapping(value = "/extract", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public ResponseEntity<?> extractDataFromCsv(HttpSession session, @RequestBody File file) {
+		Path path = null;
+		try {
+			path = toExcel(file.getFile());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return ResponseEntity.ok(gson.toJson(path.getFileName().toAbsolutePath().toString()));
+	}
+	
+	public Path toExcel(String value)throws IOException {
+		return Files.write(Paths.get("temp.csv"), DatatypeConverter.parseBase64Binary(value));
+		
+	}
+	
+}
+
+class File{
+	
+	private String file;
+
+	public String getFile() {
+		return file;
+	}
+
+	public void setFile(String file) {
+		this.file = file;
 	}
 }
