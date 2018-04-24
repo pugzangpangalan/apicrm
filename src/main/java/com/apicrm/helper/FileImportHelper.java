@@ -41,7 +41,7 @@ public class FileImportHelper {
 			while ((line = br.readLine()) != null) {
 
 				String[] row = line.split(cvsSplitBy, -1);
-				if(row.length == 17) {
+				if(row.length == 18) {
 					Tlc tlc = new Tlc();
 					tlc.setTlcId(removeUnecessaryChar(row[0]));
 					tlc.setAddress(removeUnecessaryChar(row[1]));
