@@ -48,3 +48,33 @@ CREATE TABLE status (
 status_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 status_name VARCHAR(100)
 );
+
+/*
+ tlc_user table 
+ */
+
+CREATE TABLE tlc_user(
+tlc_user_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+first_name VARCHAR(100),
+last_name VARCHAR(100),
+email_address VARCHAR(100),
+password VARCHAR(255),
+role_name VARCHAR(100),
+status_name VARCHAR(100)
+);
+
+/*
+ * role table
+ */
+
+CREATE TABLE role (
+role_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+role_name VARCHAR(100)
+);
+/*
+ * tlc_user_status table
+ */
+CREATE TABLE tlc_user_status(
+tlc_user_status_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+status_name VARCHAR(100)
+);
