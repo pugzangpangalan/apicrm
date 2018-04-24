@@ -4,7 +4,7 @@ public class Team {
 	
 	private long teamId;
 	private long projectId;
-	private String projectName;
+	private String teamName;
 	
 	public long getTeamId() {
 		return teamId;
@@ -18,11 +18,11 @@ public class Team {
 	public void setProjectId(long projectId) {
 		this.projectId = projectId;
 	}
-	public String getProjectName() {
-		return projectName;
+	public String getTeamName() {
+		return teamName;
 	}
-	public void setProjectName(String projectName) {
-		this.projectName = projectName;
+	public void setProjectName(String teamName) {
+		this.teamName = teamName;
 	}
 	
 }
