@@ -1,4 +1,4 @@
-package com.apicrm.main.entity;
+package com.apicrm.entity;
 
 import java.util.Date;
 
