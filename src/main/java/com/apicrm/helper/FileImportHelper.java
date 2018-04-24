@@ -35,8 +35,9 @@ public class FileImportHelper {
 		String line = "";
 		String cvsSplitBy = ",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)";
 
-		try (BufferedReader br = new BufferedReader(new FileReader(path))) {
+		try {
 
+			BufferedReader br = new BufferedReader(new FileReader(path));
 			while ((line = br.readLine()) != null) {
 
 				String[] row = line.split(cvsSplitBy, -1);
@@ -68,6 +69,8 @@ public class FileImportHelper {
 					System.out.println("Incorrect size for " + row[0]);
 				}
 			}
+			
+			br.close();
 
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -76,7 +79,6 @@ public class FileImportHelper {
 		// Logger
 		System.out.println("No of successful row import:" + successRowCount);
 		System.out.println("No of failed row import:" + failedRowCount);
-		
 		return tlcList;
 	}
 	
