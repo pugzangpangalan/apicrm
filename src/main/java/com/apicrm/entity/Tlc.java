@@ -3,28 +3,80 @@ package com.apicrm.entity;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "tlc")
 public class Tlc implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id")
 	private long id;
+	
+	@Column(name = "tlc_id")
 	private String tlcId;
+	
+	@Column(name = "address")
 	private String address;
+	
+	@Column(name = "customer_name")
 	private String customerName;
+	
+	@Column(name = "contact_number")
 	private String contactNumber;
+	
+	@Column(name = "site_info_accesss")
 	private String siteAccessInfo;
+	
+	@Column(name = "tlc_date")
 	private Date date;
+	
+	@Column(name = "time")
 	private String time;
+	
+	@Column(name = "scope_doc_sent")
 	private int scopeDocSent;
+	
+	@Column(name = "chorus_portal_order")
 	private String chorusPortalOrder;
+	
+	@Column(name = "icms_service_order")
 	private String icmsServiceOrder;
+	
+	@Column(name = "team_id")
 	private long teamId;
+	
+	@Column(name = "status_id")
 	private TlcStatus status;
+	
+	@Column(name = "site_visit_outcome")
 	private String siteVisitOutcome;
+	
+	@Column(name = "comments")
 	private String comments;
+	
+	@Column(name = "schedule_once")
 	private int scheduleOnce;
+	
+	@Column(name = "scoping_doc_count")
 	private int scopingDocCount;
+	
+	@Column(name = "appointment_date")
 	private Date appointmentDate;
+	
+	@JoinColumn(name = "project_name", referencedColumnName = "project_name")
 	private TlcProject project;
+	
+	@JoinColumn(name = "team_id", referencedColumnName = "team_id")
 	private DoorKnockTeam team;
 
 	public long getId() {

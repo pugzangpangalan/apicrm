@@ -1,5 +1,7 @@
 package com.apicrm.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,25 +14,31 @@ import javax.persistence.Transient;
 
 import org.springframework.beans.factory.annotation.Value;
 
-import com.apicrm.entity.Role;
 import com.google.gson.annotations.SerializedName;
 
 @Entity
 @Table(name = "tlc_user")
-public class TlcUser {
+public class TlcUser implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+	
 	@Id
 	@Column(name = "tlc_user_id")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long tlcUserId;
+	
 	@Value("first_name")
 	@SerializedName("first_name")
 	private String firstName;
+	
 	@Value("last_name")
 	@SerializedName("last_name")
 	private String lastName;
+	
 	@Value("email_address")
 	@SerializedName("email_address")
 	private String emailAddress;
+	
 	@SerializedName("password")
 	@Value("password")
 	private String password;

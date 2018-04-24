@@ -27,7 +27,7 @@ public class FileImportHelper {
 	@Autowired
 	private DoorKnockTeamService doorKnockTeamService;
 	
-	public List<Tlc> importCsv(String path) {
+	public List<Tlc> traverseTlcCsv(String path) {
 		List<Tlc> tlcList = new ArrayList<Tlc>();
 		
 		int successRowCount = 0;
