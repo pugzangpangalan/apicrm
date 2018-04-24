@@ -1,32 +1,20 @@
 package com.apicrm.service.utils;
 
-import java.io.BufferedInputStream;
-import java.io.FileInputStream;
-import java.security.InvalidKeyException;
-import java.security.KeyFactory;
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
 import java.security.NoSuchAlgorithmException;
 import java.security.NoSuchProviderException;
 import java.security.PrivateKey;
-import java.security.PublicKey;
 import java.security.SecureRandom;
-import java.security.Signature;
-import java.security.spec.EncodedKeySpec;
-import java.security.spec.InvalidKeySpecException;
-import java.security.spec.PKCS8EncodedKeySpec;
-import java.security.spec.X509EncodedKeySpec;
 
 import com.sun.jersey.core.util.Base64;
-
-
-import com.google.gson.Gson;
 
 public class StringUtils {
 
 	public  static void main(String[] args) {
 		try {
 			generateKeys();
+			generateToken("jay");
 		} catch (NoSuchAlgorithmException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -36,7 +24,7 @@ public class StringUtils {
 		} 
 	}
 	
-	public static  String generateKeys () throws NoSuchAlgorithmException, NoSuchProviderException {
+	public static String generateKeys () throws NoSuchAlgorithmException, NoSuchProviderException {
 		String key = "";
 		String keyAlgorithm ="DSA";
 		int numBits = 1024;
@@ -58,6 +46,14 @@ public class StringUtils {
        }
 
 		return key;
+	} 
+	
+	public static String generateToken( String username ) {
+		SecureRandom random = new SecureRandom();
+		
+        long longToken = Math.abs( random.nextLong() );
+        String token = Long.toString( longToken, 16 ).toUpperCase();
+        return ( username + ":" + token );
 	}
 
 }
