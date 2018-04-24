@@ -1,18 +1,21 @@
 package com.apicrm.entity;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.springframework.beans.factory.annotation.Value;
 
 import com.apicrm.entity.Role;
 import com.google.gson.annotations.SerializedName;
 
+@Entity
 @Table(name = "tlc_user")
 public class TlcUser {
 	@Id
@@ -31,11 +34,17 @@ public class TlcUser {
 	@SerializedName("password")
 	@Value("password")
 	private String password;
-	
+	@Transient
+	@SerializedName("role")
+	private String strRole;
+	@Transient
+	@SerializedName("status_name")
+	private String strStatusName;
+	@SerializedName("role_obj")
 	@ManyToOne(optional = false)
 	@JoinColumn(name = "role_name", referencedColumnName = "role_name")
 	private Role role;
-	
+	@SerializedName("status_name_obj")
 	@ManyToOne(optional = false)
 	@JoinColumn(name = "status_name", referencedColumnName = "status_name")
 	private TlcUserStatus tlcUserStatus;
@@ -86,5 +95,29 @@ public class TlcUser {
 
 	public void setTlcUserStatus(TlcUserStatus tlcUserStatus) {
 		this.tlcUserStatus = tlcUserStatus;
+	}
+
+	public Long getTlcUserId() {
+		return tlcUserId;
+	}
+
+	public void setTlcUserId(Long tlcUserId) {
+		this.tlcUserId = tlcUserId;
+	}
+
+	public String getStrRole() {
+		return strRole;
+	}
+
+	public void setStrRole(String strRole) {
+		this.strRole = strRole;
+	}
+
+	public String getStrStatusName() {
+		return strStatusName;
+	}
+
+	public void setStrStatusName(String strStatusName) {
+		this.strStatusName = strStatusName;
 	}
 }
