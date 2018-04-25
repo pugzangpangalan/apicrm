@@ -38,35 +38,39 @@ public class FileImportHelper {
 		try {
 
 			BufferedReader br = new BufferedReader(new FileReader(path));
+			boolean headerColumn = true;
 			while ((line = br.readLine()) != null) {
-
-				String[] row = line.split(cvsSplitBy, -1);
-				if(row.length == 18) {
+				if(headerColumn){
+					headerColumn = false;
+					continue;
+				}
+				String[] col = line.split(cvsSplitBy, -1);
+				if(col.length == 18) {
 					Tlc tlc = new Tlc();
-					tlc.setTlcId(removeUnecessaryChar(row[0]));
-					tlc.setAddress(removeUnecessaryChar(row[1]));
-					tlc.setCustomerName(removeUnecessaryChar(row[2]));
-					tlc.setContactNumber(removeUnecessaryChar(row[3]));
-					tlc.setSiteAccessInfo(removeUnecessaryChar(row[4]));
-					tlc.setDate(ApiCrmUtil.parseDate(removeUnecessaryChar(row[5])));
-					tlc.setTime(removeUnecessaryChar(row[6]));
-					tlc.setScopeDocSent(Integer.parseInt(removeUnecessaryChar(row[7])));
-					tlc.setProject(tlcProjectService.findByProjectName(removeUnecessaryChar(row[8])));
-					tlc.setChorusPortalOrder(removeUnecessaryChar(row[9]));
-					tlc.setIcmsServiceOrder(removeUnecessaryChar(row[10]));
-					tlc.setTeam(doorKnockTeamService.findByTeamName(removeUnecessaryChar(row[11])));
-					tlc.setStatus(tlcStatusService.findByStatusId(removeUnecessaryChar(row[12])));
-					tlc.setSiteVisitOutcome(removeUnecessaryChar(row[13]));
-					tlc.setComments(removeUnecessaryChar(row[14]));
-					tlc.setScheduleOnce(Integer.parseInt(removeUnecessaryChar(row[15])));
-					tlc.setScopingDocCount(Integer.parseInt(removeUnecessaryChar(row[16])));
-					tlc.setAppointmentDate(ApiCrmUtil.parseDate(removeUnecessaryChar(row[17])));
+					tlc.setTlcId(removeUnecessaryChar(col[0]));
+					tlc.setAddress(removeUnecessaryChar(col[1]));
+					tlc.setCustomerName(removeUnecessaryChar(col[2]));
+					tlc.setContactNumber(removeUnecessaryChar(col[3]));
+					tlc.setSiteAccessInfo(removeUnecessaryChar(col[4]));
+					tlc.setDate(ApiCrmUtil.parseDate(removeUnecessaryChar(col[5])));
+					tlc.setTime(removeUnecessaryChar(col[6]));
+					tlc.setScopeDocSent(Integer.parseInt(removeUnecessaryChar(col[7])));
+					tlc.setProject(tlcProjectService.findByProjectName(removeUnecessaryChar(col[8])));
+					tlc.setChorusPortalOrder(removeUnecessaryChar(col[9]));
+					tlc.setIcmsServiceOrder(removeUnecessaryChar(col[10]));
+					tlc.setTeam(doorKnockTeamService.findByTeamName(removeUnecessaryChar(col[11])));
+					tlc.setStatus(tlcStatusService.findByStatusId(removeUnecessaryChar(col[12])));
+					tlc.setSiteVisitOutcome(removeUnecessaryChar(col[13]));
+					tlc.setComments(removeUnecessaryChar(col[14]));
+					tlc.setScheduleOnce(Integer.parseInt(removeUnecessaryChar(col[15])));
+					tlc.setScopingDocCount(Integer.parseInt(removeUnecessaryChar(col[16])));
+					tlc.setAppointmentDate(ApiCrmUtil.parseDate(removeUnecessaryChar(col[17])));
 					tlcList.add(tlc);
 					successRowCount++;
 				} else {
 					// TODO: Implement logger
 					failedRowCount++;
-					System.out.println("Incorrect size for " + row[0]);
+					System.out.println("Incorrect size for " + col[0]);
 				}
 			}
 			

@@ -74,7 +74,7 @@ public class Tlc implements Serializable {
 	private Date appointmentDate;
 	
 	@JoinColumn(name = "project_name", referencedColumnName = "project_name")
-	private TlcProject project;
+	private TlcProject tlcProject;
 	
 	@JoinColumn(name = "team_id", referencedColumnName = "team_id")
 	private DoorKnockTeam team;
@@ -224,11 +224,11 @@ public class Tlc implements Serializable {
 	}
 
 	public TlcProject getProject() {
-		return project;
+		return tlcProject;
 	}
 
-	public void setProject(TlcProject project) {
-		this.project = project;
+	public void setProject(TlcProject tlcProject) {
+		this.tlcProject = tlcProject;
 	}
 
 	public DoorKnockTeam getTeam() {

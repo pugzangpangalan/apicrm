@@ -17,18 +17,18 @@ public class TlcProject implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "id")
-	private int id;
+	@Column(name = "project_id")
+	private long projectId;
 
 	@Column(name = "project_name")
 	private String projectName;
 
-	public int getId() {
-		return id;
+	public long getProjectId() {
+		return projectId;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setProjectId(long projectId) {
+		this.projectId = projectId;
 	}
 
 	public String getProjectName() {

@@ -33,6 +33,11 @@ public class TlcServiceImpl implements TlcService {
 	public void removeCsvFile() {
 		
 	}
+
+	@Override
+	public Tlc getTlcByTlcId(String tlcId) {
+		return tlcRepository.findByTlcId(tlcId);
+	}
 	
 	
 }

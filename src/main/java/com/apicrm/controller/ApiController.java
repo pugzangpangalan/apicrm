@@ -11,12 +11,18 @@ import javax.xml.bind.DatatypeConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.apicrm.entity.DoorKnockTeam;
+import com.apicrm.entity.Tlc;
+import com.apicrm.entity.TlcProject;
+import com.apicrm.service.DoorKnockTeamService;
+import com.apicrm.service.TlcProjectService;
 import com.apicrm.service.TlcService;
 import com.google.gson.Gson;
 
@@ -26,6 +32,12 @@ public class ApiController {
 	
 	@Autowired
 	private TlcService tlcService;
+	
+	@Autowired
+	private TlcProjectService tlcProjectService;
+	
+	@Autowired
+	private DoorKnockTeamService doorKnockTeamService;
 	
 	Gson gson = new Gson();
 
@@ -49,6 +61,24 @@ public class ApiController {
 			e.printStackTrace();
 		}
 		return ResponseEntity.ok(gson.toJson(path.getFileName().toAbsolutePath().toString()));
+	}
+
+	@RequestMapping(value = "/project/{projectId}", method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public TlcProject getProject(@PathVariable("projectId") String projectId) {
+		return tlcProjectService.findProjectById(Long.valueOf(projectId));
+	}
+
+	@RequestMapping(value = "/team/{teamId}", method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public DoorKnockTeam getTeam(@PathVariable("teamId") String teamId) {
+		return doorKnockTeamService.findByTeamId(Long.valueOf(teamId));
+	}
+
+	@RequestMapping(value = "/tlc/{tlcId}", method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public Tlc getTlcByTlcId(@PathVariable("tlcId") String tlcId) {
+		return tlcService.getTlcByTlcId(tlcId);
 	}
 
 	public Path toExcel(String value) throws IOException {

@@ -2,7 +2,7 @@
 TLC Table
 */
 CREATE TABLE tlc(
-id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 tlc_id VARCHAR(100),
 address VARCHAR(255),
 customer_name VARCHAR(100),
@@ -27,7 +27,7 @@ appointment_date DATE
 PROJECT Table
 */
 CREATE TABLE project(
-project_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+project_id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 project_name VARCHAR(50)
 );
 
@@ -36,8 +36,8 @@ TEAM Table
 */
 
 CREATE TABLE team(
-team_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-project_id INT,
+team_id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+project_id BIGINT,
 team_name VARCHAR(100),
 FOREIGN KEY (project_id) REFERENCES project(project_id) ON DELETE CASCADE
 );
@@ -56,7 +56,7 @@ status_name VARCHAR(100)
  */
 
 CREATE TABLE tlc_user(
-tlc_user_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+tlc_user_id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 first_name VARCHAR(100),
 last_name VARCHAR(100),
 email_address VARCHAR(100),
