@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 import javax.xml.bind.DatatypeConverter;
@@ -98,6 +99,11 @@ public class ApiController {
 	public Path toExcel(String value) throws IOException {
 		return Files.write(Paths.get("temp.csv"), DatatypeConverter.parseBase64Binary(value));
 
+	}
+	
+	@RequestMapping(value = "/campaign", method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody List<Tlc> getCampaign() {
+		return tlcService.getAllTlc();
 	}
 
 }

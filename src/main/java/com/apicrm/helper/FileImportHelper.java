@@ -8,7 +8,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.util.StringUtils;
 
 import com.apicrm.common.ApiCrmUtil;
 import com.apicrm.entity.Tlc;
@@ -59,7 +58,11 @@ public class FileImportHelper {
 					}
 					
 					tlc.setTime(removeUnecessaryChar(col[6]));
-					tlc.setScopeDocSent(Integer.parseInt(removeUnecessaryChar(col[7])));
+					
+					if(!ApiCrmUtil.isNullOrEmpty(col[7])) {
+						tlc.setScopeDocSent(Integer.parseInt(removeUnecessaryChar(col[7])));
+					}
+					
 					tlc.setProject(tlcProjectService.findByProjectName(removeUnecessaryChar(col[8])));
 					tlc.setChorusPortalOrder(removeUnecessaryChar(col[9]));
 					tlc.setIcmsServiceOrder(removeUnecessaryChar(col[10]));
@@ -67,8 +70,14 @@ public class FileImportHelper {
 					tlc.setStatus(tlcStatusService.findByStatusName(removeUnecessaryChar(col[12])));
 					tlc.setSiteVisitOutcome(removeUnecessaryChar(col[13]));
 					tlc.setComments(removeUnecessaryChar(col[14]));
-					tlc.setScheduleOnce(Integer.parseInt(removeUnecessaryChar(col[15])));
-					tlc.setScopingDocCount(Integer.parseInt(removeUnecessaryChar(col[16])));
+					
+					if(!ApiCrmUtil.isNullOrEmpty(col[15])) {
+						tlc.setScheduleOnce(Integer.parseInt(removeUnecessaryChar(col[15])));
+					}
+					
+					if(!ApiCrmUtil.isNullOrEmpty(col[16])) {
+						tlc.setScopingDocCount(Integer.parseInt(removeUnecessaryChar(col[16])));
+					}
 					
 					if(!ApiCrmUtil.isNullOrEmpty(col[17])) {
 						tlc.setAppointmentDate(ApiCrmUtil.parseDate(removeUnecessaryChar(col[17])));

@@ -7,7 +7,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
-@ComponentScan("com.apicrm")
+@ComponentScan({"com.apicrm"})
 @EnableJpaRepositories(basePackages = "com.apicrm.repository")
 @EntityScan(basePackages = "com.apicrm.entity")
 public class ApiCrmApplication {

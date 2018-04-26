@@ -8,5 +8,5 @@ import com.apicrm.entity.Tlc;
 public interface TlcRepository extends JpaRepository<Tlc, Long> {
 	
 	public Tlc findByTlcId(@Param("tlcId") String tlcId);
-
+	
 }

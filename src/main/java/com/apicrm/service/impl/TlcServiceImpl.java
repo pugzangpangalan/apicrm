@@ -23,6 +23,7 @@ public class TlcServiceImpl implements TlcService {
 		List<Tlc> tlcList = fileImportHelper.traverseTlcCsv(path);
 		
 		for(Tlc tlc : tlcList) {
+			tlc = tlcRepository.findByTlcId(tlc.getTlcId()) == null? tlc : tlcRepository.findByTlcId(tlc.getTlcId());
 			tlcRepository.save(tlc);
 			tlcRepository.flush();
 		}
@@ -39,5 +40,9 @@ public class TlcServiceImpl implements TlcService {
 		return tlcRepository.findByTlcId(tlcId);
 	}
 	
+	@Override
+	public List<Tlc> getAllTlc() {
+		return tlcRepository.findAll();
+	}
 	
 }
