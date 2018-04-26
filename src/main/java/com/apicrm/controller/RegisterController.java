@@ -30,7 +30,7 @@ public class RegisterController {
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<?> register(@RequestBody String requestBody, HttpSession session) {
-
+		StringUtils su = new StringUtils();
 		ArrayList<String> arrayList = new ArrayList<>();
 		arrayList.add("first_name");
 		arrayList.add("last_name");
@@ -42,15 +42,15 @@ public class RegisterController {
 		JsonObject requestJson = element.getAsJsonObject();
 		String required = RequiredChecker.requiredCheck(arrayList, requestJson);
 		if (null != required) {
-			return ResponseEntity.status(HttpStatus.FORBIDDEN).body(StringUtils.genererateReturnMessage("Required Field", required));
+			return ResponseEntity.status(HttpStatus.FORBIDDEN).body(su.genererateReturnMessage("Required Field", required));
 		}
 		TlcUser user = gson.fromJson(requestBody, TlcUser.class);
 		if(null != userRegisterService.findUserByEmail(user.getEmailAddress())) {
-			return ResponseEntity.status(HttpStatus.FORBIDDEN).body(StringUtils.genererateReturnMessage("Error", "Email address already exists"));
+			return ResponseEntity.status(HttpStatus.FORBIDDEN).body(su.genererateReturnMessage("Error", "Email address already exists"));
 		}
 		
 		userRegisterService.saveTlcUser(user);
-		return ResponseEntity.ok(StringUtils.genererateReturnMessage("Message", "User successfully added!"));
+		return ResponseEntity.ok(su.genererateReturnMessage("Message", "User successfully added!"));
 	}
 
 }

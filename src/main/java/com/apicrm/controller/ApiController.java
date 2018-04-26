@@ -80,6 +80,12 @@ public class ApiController {
 	public Tlc getTlcByTlcId(@PathVariable("tlcId") String tlcId) {
 		return tlcService.getTlcByTlcId(tlcId);
 	}
+	
+	@RequestMapping(value = "/token/{secretKey}", method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public Tlc getToken(@PathVariable("secretKey") String secretKey) {
+		return tlcService.getTlcByTlcId(secretKey);
+	}
 
 	public Path toExcel(String value) throws IOException {
 		return Files.write(Paths.get("temp.csv"), DatatypeConverter.parseBase64Binary(value));

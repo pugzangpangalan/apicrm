@@ -14,20 +14,9 @@ import com.sun.jersey.core.util.Base64;
 
 public class StringUtils {
 	static Gson gson = new Gson();
-	public  static void main(String[] args) {
-		try {
-			generateKeys();
-			generateToken("jay");
-		} catch (NoSuchAlgorithmException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (NoSuchProviderException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} 
-	}
 	
-	public static String generateKeys () throws NoSuchAlgorithmException, NoSuchProviderException {
+	
+	public  String generateKeys () throws NoSuchAlgorithmException, NoSuchProviderException {
 		String key = "";
 		String keyAlgorithm ="DSA";
 		int numBits = 1024;
@@ -51,14 +40,15 @@ public class StringUtils {
 		return key;
 	} 
 	
-	public static String generateToken( String username ) {
+	public  String generateToken( String username ) {
 		SecureRandom random = new SecureRandom();
 		
         long longToken = Math.abs( random.nextLong() );
         String token = Long.toString( longToken, 16 ).toUpperCase();
         return ( username + ":" + token );
 	}
-	public static String genererateReturnMessage(String messageType,String message) {
+	
+	public  String genererateReturnMessage(String messageType,String message) {
 		Map<String,HashMap<String,String>> returnMap = new HashMap<String,HashMap<String,String>>();
 		HashMap<String,String> messageMap = new HashMap<String,String>();
 		messageMap.put(messageType, message);
