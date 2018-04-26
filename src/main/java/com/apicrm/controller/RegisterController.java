@@ -31,7 +31,7 @@ public class RegisterController {
 	@RequestMapping(value = "/register", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<?> register(@RequestBody String requestBody, HttpSession session) {
 		StringUtils su = new StringUtils();
-		ArrayList<String> arrayList = new ArrayList<>();
+		ArrayList<String> arrayList = new ArrayList<String>();
 		arrayList.add("first_name");
 		arrayList.add("last_name");
 		arrayList.add("email_address");

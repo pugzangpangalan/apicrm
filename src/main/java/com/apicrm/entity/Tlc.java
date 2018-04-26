@@ -36,7 +36,7 @@ public class Tlc implements Serializable {
 	@Column(name = "contact_number")
 	private String contactNumber;
 	
-	@Column(name = "site_info_accesss")
+	@Column(name = "site_access_info")
 	private String siteAccessInfo;
 	
 	@Column(name = "tlc_date")
