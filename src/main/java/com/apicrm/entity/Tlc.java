@@ -54,9 +54,6 @@ public class Tlc implements Serializable {
 	@Column(name = "icms_service_order")
 	private String icmsServiceOrder;
 	
-	@Column(name = "team_id")
-	private long teamId;
-	
 	@ManyToOne(optional = false)
 	@JoinColumn(name = "status_name", referencedColumnName = "status_name")
 	private TlcStatus status;
@@ -170,14 +167,6 @@ public class Tlc implements Serializable {
 
 	public void setIcmsServiceOrder(String icmsServiceOrder) {
 		this.icmsServiceOrder = icmsServiceOrder;
-	}
-
-	public long getTeamId() {
-		return teamId;
-	}
-
-	public void setTeamId(long teamId) {
-		this.teamId = teamId;
 	}
 
 	public String getComments() {
