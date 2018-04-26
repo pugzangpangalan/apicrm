@@ -21,9 +21,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.apicrm.entity.DoorKnockTeam;
 import com.apicrm.entity.Tlc;
 import com.apicrm.entity.TlcProject;
+import com.apicrm.entity.Token;
 import com.apicrm.service.DoorKnockTeamService;
 import com.apicrm.service.TlcProjectService;
 import com.apicrm.service.TlcService;
+import com.apicrm.service.TokenService;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -40,6 +42,9 @@ public class ApiController {
 	
 	@Autowired
 	private DoorKnockTeamService doorKnockTeamService;
+	
+	@Autowired
+	private TokenService tokenService;
 	
 	Gson gson = new Gson();
 
@@ -85,11 +90,11 @@ public class ApiController {
 	}
 	
 	@RequestMapping(value = "/token/{secretKey}", method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	@ResponseBody
-	public Tlc getToken(@PathVariable("secretKey") String secretKey) {
-		return tlcService.getTlcByTlcId(secretKey);
-	}
-
+    @ResponseBody
+    public Token getToken(@PathVariable("secretKey") String secretKey) {
+        return tokenService.getToken(secretKey);
+    }
+	
 	public Path toExcel(String value) throws IOException {
 		return Files.write(Paths.get("temp.csv"), DatatypeConverter.parseBase64Binary(value));
 

@@ -1,4 +1,4 @@
-package com.apicrm.service.utils;
+package com.apicrm.utils;
 
 import java.util.ArrayList;
 import java.util.HashSet;

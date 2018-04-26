@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.apicrm.entity.DkUser;
 import com.apicrm.service.UserRegisterService;
-import com.apicrm.service.utils.RequiredChecker;
-import com.apicrm.service.utils.StringUtils;
+import com.apicrm.utils.RequiredChecker;
+import com.apicrm.utils.StringUtils;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;

@@ -84,3 +84,29 @@ CREATE TABLE dk_user_status(
 dk_user_status_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 status_name VARCHAR(100)
 );
+
+  /*
+ * secret keys table
+ */
+CREATE TABLE secret_key(
+secret_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+secret_key VARCHAR(100),
+status INT
+);
+
+
+/*
+ * secret keys table
+ */
+CREATE TABLE token(
+token_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+token VARCHAR(100),
+expiration_date DATE,
+status INT
+);
+
+/* 
+Insert default values in secret table
+*/
+INSERT INTO secret_key (secret_key, status)
+VALUES ("ABCD2323KDF3DSS3J",1);

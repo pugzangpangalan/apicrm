@@ -15,23 +15,23 @@ public class Token {
 	@Id
 	@Column(name = "token_id")
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long roleId;
+	private Long tokenId;
 	
 	@Column(name="token")
 	private String token;
 	
 	@Column(name="expiration_date")
-	private Date expiration_date;
+	private Date expirationDate;
 	
 	@Column(name="status")
 	private int status;
 
-	public Long getRoleId() {
-		return roleId;
+	public Long getTokenId() {
+		return tokenId;
 	}
 
-	public void setRoleId(Long roleId) {
-		this.roleId = roleId;
+	public void setTokenId(Long roleId) {
+		this.tokenId = roleId;
 	}
 
 	public String getToken() {
@@ -43,11 +43,11 @@ public class Token {
 	}
 
 	public Date getExpiration_date() {
-		return expiration_date;
+		return expirationDate;
 	}
 
-	public void setExpiration_date(Date expiration_date) {
-		this.expiration_date = expiration_date;
+	public void setExpiration_date(Date expirationDate) {
+		this.expirationDate = expirationDate;
 	}
 
 	public int getStatus() {

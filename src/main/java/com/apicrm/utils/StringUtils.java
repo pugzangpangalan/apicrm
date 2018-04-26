@@ -1,4 +1,4 @@
-package com.apicrm.service.utils;
+package com.apicrm.utils;
 
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
@@ -16,7 +16,7 @@ public class StringUtils {
 	static Gson gson = new Gson();
 	
 	
-	public  String generateKeys () throws NoSuchAlgorithmException, NoSuchProviderException {
+	public String generateKeys () throws NoSuchAlgorithmException, NoSuchProviderException {
 		String key = "";
 		String keyAlgorithm ="DSA";
 		int numBits = 1024;
@@ -40,15 +40,15 @@ public class StringUtils {
 		return key;
 	} 
 	
-	public  String generateToken( String username ) {
+	public String generateToken() {
 		SecureRandom random = new SecureRandom();
 		
         long longToken = Math.abs( random.nextLong() );
         String token = Long.toString( longToken, 16 ).toUpperCase();
-        return ( username + ":" + token );
+        return token;
 	}
 	
-	public  String genererateReturnMessage(String messageType,String message) {
+	public String genererateReturnMessage(String messageType,String message) {
 		Map<String,HashMap<String,String>> returnMap = new HashMap<String,HashMap<String,String>>();
 		HashMap<String,String> messageMap = new HashMap<String,String>();
 		messageMap.put(messageType, message);

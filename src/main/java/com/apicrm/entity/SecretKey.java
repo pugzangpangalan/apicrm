@@ -16,7 +16,7 @@ public class SecretKey {
 	private Long secret_id;
 	
 	@Column(name="secret_key")
-	private String secret_key;
+	private String secretKey;
 	
 	@Column(name="status")
 	private int status;
@@ -29,12 +29,12 @@ public class SecretKey {
 		this.secret_id = secret_id;
 	}
 
-	public String getSecret_key() {
-		return secret_key;
+	public String getSecretKey() {
+		return secretKey;
 	}
 
-	public void setSecret_key(String secret_key) {
-		this.secret_key = secret_key;
+	public void setSecretKey(String secretKey) {
+		this.secretKey = secretKey;
 	}
 
 	public int getStatus() {
