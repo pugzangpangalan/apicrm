@@ -25,6 +25,8 @@ import com.apicrm.service.DoorKnockTeamService;
 import com.apicrm.service.TlcProjectService;
 import com.apicrm.service.TlcService;
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 @RestController
 @RequestMapping(value = "/api/crm")
@@ -49,10 +51,11 @@ public class ApiController {
 
 	@RequestMapping(value = "/extract", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	public ResponseEntity<?> extractDataFromCsv(HttpSession session, @RequestBody File file) {
+	public ResponseEntity<?> extractDataFromCsv(HttpSession session, @RequestBody String file) {
+		JsonObject obj = new JsonParser().parse(file).getAsJsonObject();
 		Path path = null;
 		try {
-			path = toExcel(file.getFile());
+			path = toExcel(obj.get("file").getAsString());
 			String filePathName = path.getFileName().toAbsolutePath().toString();
 			tlcService.saveTlcCsvFile(filePathName);
 
@@ -92,17 +95,4 @@ public class ApiController {
 
 	}
 
-}
-
-class File {
-
-	private String file;
-
-	public String getFile() {
-		return file;
-	}
-
-	public void setFile(String file) {
-		this.file = file;
-	}
 }
