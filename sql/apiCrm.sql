@@ -1,4 +1,24 @@
 /*
+PROJECT Table
+*/
+CREATE TABLE project(
+project_id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+project_name VARCHAR(50)
+);
+
+/*
+TEAM Table
+*/
+
+CREATE TABLE team(
+team_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+project_id BIGINT,
+team_name VARCHAR(100),
+FOREIGN KEY (project_id) REFERENCES project(project_id) ON DELETE CASCADE
+);
+
+
+/*
 TLC Table
 */
 CREATE TABLE tlc(
@@ -20,27 +40,11 @@ site_visit_outcome VARCHAR(255),
 comments TEXT,
 schedule_once INT,
 scoping_doc_count INT,
-appointment_date DATE
+appointment_date DATE,
+FOREIGN KEY (team_id) REFERENCES team(team_id) ON DELETE CASCADE
 );
 
-/*
-PROJECT Table
-*/
-CREATE TABLE project(
-project_id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-project_name VARCHAR(50)
-);
 
-/*
-TEAM Table
-*/
-
-CREATE TABLE team(
-team_id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-project_id BIGINT,
-team_name VARCHAR(100),
-FOREIGN KEY (project_id) REFERENCES project(project_id) ON DELETE CASCADE
-);
 
 /*
 status
@@ -55,8 +59,8 @@ status_name VARCHAR(100)
  tlc_user table 
  */
 
-CREATE TABLE tlc_user(
-tlc_user_id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+CREATE TABLE dk_user(
+dk_user_id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 first_name VARCHAR(100),
 last_name VARCHAR(100),
 email_address VARCHAR(100),
@@ -76,7 +80,7 @@ role_name VARCHAR(100)
 /*
  * tlc_user_status table
  */
-CREATE TABLE tlc_user_status(
-tlc_user_status_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+CREATE TABLE dk_user_status(
+dk_user_status_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 status_name VARCHAR(100)
 );

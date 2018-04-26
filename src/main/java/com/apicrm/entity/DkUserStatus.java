@@ -1,5 +1,7 @@
 package com.apicrm.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,24 +10,33 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "tlc_user_status")
-public class TlcUserStatus {
+@Table(name = "dk_user_status")
+public class DkUserStatus implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Id
-	@Column(name = "tlc_user_status_id")
+	@Column(name = "dk_user_status_id")
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long tlcUserStatusId;
+	private Long dkUserStatusId;
 	@Column(name = "status_name")
 	private String statusName;
-	public TlcUserStatus() {}
-	public TlcUserStatus(String statusName) {
-		this.statusName = statusName;
-	}
-	public Long getTlcUserStatusId() {
-		return tlcUserStatusId;
+
+	public DkUserStatus() {
 	}
 
-	public void setTlcUserStatusId(Long tlcUserStatusId) {
-		this.tlcUserStatusId = tlcUserStatusId;
+	public DkUserStatus(String statusName) {
+		this.statusName = statusName;
+	}
+
+	public Long getDkUserStatusId() {
+		return dkUserStatusId;
+	}
+
+	public void setDkUserStatusId(Long dkUserStatusId) {
+		this.dkUserStatusId = dkUserStatusId;
 	}
 
 	public String getStatusName() {

@@ -17,15 +17,15 @@ import org.springframework.beans.factory.annotation.Value;
 import com.google.gson.annotations.SerializedName;
 
 @Entity
-@Table(name = "tlc_user")
-public class TlcUser implements Serializable {
+@Table(name = "dk_user")
+public class DkUser implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@Column(name = "tlc_user_id")
+	@Column(name = "dk_user_id")
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long tlcUserId;
+	private Long dKUserId;
 	
 	@Value("first_name")
 	@SerializedName("first_name")
@@ -52,10 +52,11 @@ public class TlcUser implements Serializable {
 	@ManyToOne(optional = false)
 	@JoinColumn(name = "role_name", referencedColumnName = "role_name")
 	private Role role;
+	
 	@SerializedName("status_name_obj")
 	@ManyToOne(optional = false)
 	@JoinColumn(name = "status_name", referencedColumnName = "status_name")
-	private TlcUserStatus tlcUserStatus;
+	private DkUserStatus dkUserStatus;
 
 	public String getFirstName() {
 		return firstName;
@@ -97,20 +98,22 @@ public class TlcUser implements Serializable {
 		this.role = role;
 	}
 
-	public TlcUserStatus getTlcUserStatus() {
-		return tlcUserStatus;
+	
+
+	public DkUserStatus getDkUserStatus() {
+		return dkUserStatus;
 	}
 
-	public void setTlcUserStatus(TlcUserStatus tlcUserStatus) {
-		this.tlcUserStatus = tlcUserStatus;
+	public void setDkUserStatus(DkUserStatus dkUserStatus) {
+		this.dkUserStatus = dkUserStatus;
 	}
 
-	public Long getTlcUserId() {
-		return tlcUserId;
+	public Long getdKUserId() {
+		return dKUserId;
 	}
 
-	public void setTlcUserId(Long tlcUserId) {
-		this.tlcUserId = tlcUserId;
+	public void setdKUserId(Long dKUserId) {
+		this.dKUserId = dKUserId;
 	}
 
 	public String getStrRole() {

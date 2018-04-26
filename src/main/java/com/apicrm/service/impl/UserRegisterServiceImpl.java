@@ -6,11 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.apicrm.entity.Role;
-import com.apicrm.entity.TlcUser;
-import com.apicrm.entity.TlcUserStatus;
+import com.apicrm.entity.DkUser;
+import com.apicrm.entity.DkUserStatus;
 import com.apicrm.repository.RoleRepository;
-import com.apicrm.repository.TlcUserRepository;
-import com.apicrm.repository.TlcUserStatusRepository;
+import com.apicrm.repository.DkUserRepository;
+import com.apicrm.repository.DkUserStatusRepository;
 import com.apicrm.service.UserRegisterService;
 
 @Service
@@ -19,9 +19,9 @@ public class UserRegisterServiceImpl implements UserRegisterService {
 	@Autowired
 	RoleRepository roleRepository;
 	@Autowired
-	TlcUserStatusRepository tlcUserStatusRepository;
+	DkUserStatusRepository tlcUserStatusRepository;
 	@Autowired
-	TlcUserRepository tlcUserRepository;
+	DkUserRepository tlcUserRepository;
 
 	public Role getOrInsertRole(String roleName) {
 		roleName = roleName.toLowerCase();
@@ -34,25 +34,25 @@ public class UserRegisterServiceImpl implements UserRegisterService {
 		return role;
 	}
 
-	public TlcUserStatus getOrInserTlcUserStatus(String statusName) {
+	public DkUserStatus getOrInserTlcUserStatus(String statusName) {
 		statusName = statusName.toLowerCase();
-		TlcUserStatus tlcUserStatus = tlcUserStatusRepository.findByStatusName(statusName);
+		DkUserStatus tlcUserStatus = tlcUserStatusRepository.findByStatusName(statusName);
 		if(null != tlcUserStatus) {
 			return tlcUserStatus;
 		}
-		tlcUserStatus = new TlcUserStatus(statusName);
+		tlcUserStatus = new DkUserStatus(statusName);
 		tlcUserStatusRepository.save(tlcUserStatus);
 		return tlcUserStatus;
 	}
 
-	public TlcUser findUserByEmail(String email) {
+	public DkUser findUserByEmail(String email) {
 		return tlcUserRepository.findByEmailAddress(email.toLowerCase());
 	}
 
 	@Override
-	public TlcUser saveTlcUser(TlcUser user) {
+	public DkUser saveDkUser(DkUser user) {
 		user.setRole(getOrInsertRole(user.getStrRole().trim()));
-		user.setTlcUserStatus(getOrInserTlcUserStatus(user.getStrStatusName().trim()));
+		user.setDkUserStatus(getOrInserTlcUserStatus(user.getStrStatusName().trim()));
 		return tlcUserRepository.save(user);
 	}
 }

@@ -3,15 +3,15 @@ package com.apicrm.service;
 import org.springframework.stereotype.Service;
 
 import com.apicrm.entity.Role;
-import com.apicrm.entity.TlcUser;
-import com.apicrm.entity.TlcUserStatus;
+import com.apicrm.entity.DkUser;
+import com.apicrm.entity.DkUserStatus;
 @Service
 public interface UserRegisterService {
 	public Role getOrInsertRole(String roleName);
 
-	public TlcUserStatus getOrInserTlcUserStatus(String statusName);
+	public DkUserStatus getOrInserTlcUserStatus(String statusName);
 
-	public TlcUser findUserByEmail(String email);
+	public DkUser findUserByEmail(String email);
 	
-	public TlcUser saveTlcUser(TlcUser user);
+	public DkUser saveDkUser(DkUser user);
 }

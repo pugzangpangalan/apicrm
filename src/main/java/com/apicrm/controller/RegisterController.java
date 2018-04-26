@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.apicrm.entity.TlcUser;
+import com.apicrm.entity.DkUser;
 import com.apicrm.service.UserRegisterService;
 import com.apicrm.service.utils.RequiredChecker;
 import com.apicrm.service.utils.StringUtils;
@@ -44,12 +44,12 @@ public class RegisterController {
 		if (null != required) {
 			return ResponseEntity.status(HttpStatus.FORBIDDEN).body(su.genererateReturnMessage("Required Field", required));
 		}
-		TlcUser user = gson.fromJson(requestBody, TlcUser.class);
+		DkUser user = gson.fromJson(requestBody, DkUser.class);
 		if(null != userRegisterService.findUserByEmail(user.getEmailAddress())) {
 			return ResponseEntity.status(HttpStatus.FORBIDDEN).body(su.genererateReturnMessage("Error", "Email address already exists"));
 		}
 		
-		userRegisterService.saveTlcUser(user);
+		userRegisterService.saveDkUser(user);
 		return ResponseEntity.ok(su.genererateReturnMessage("Message", "User successfully added!"));
 	}
 
