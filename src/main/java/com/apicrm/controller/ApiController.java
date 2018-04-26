@@ -96,6 +96,12 @@ public class ApiController {
         return tokenService.getToken(secretKey);
     }
 	
+	@RequestMapping(value = "/export/{campaignId}", method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public void exportCampaign(@PathVariable("campaignId") String campaignId) {
+        tlcService.exportCsvFile(campaignId,true);
+    }
+	
 	public Path toExcel(String value) throws IOException {
 		return Files.write(Paths.get("temp.csv"), DatatypeConverter.parseBase64Binary(value));
 

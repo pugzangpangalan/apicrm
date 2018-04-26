@@ -1,5 +1,7 @@
 package com.apicrm.service.impl;
 
+import java.awt.Desktop;
+import java.io.File;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,6 +45,16 @@ public class TlcServiceImpl implements TlcService {
 	@Override
 	public List<Tlc> getAllTlc() {
 		return tlcRepository.findAll();
+	}
+	
+	@Override
+	public String exportCsvFile(String campaignId, boolean openAfterCreate) {
+		String fileName = fileImportHelper.generateCsvFile(getAllTlc(), "campaign"+campaignId);
+		
+		if(!fileName.isEmpty() && openAfterCreate) {
+			fileImportHelper.openFile(fileName);
+		}
+		return fileName;
 	}
 	
 }
