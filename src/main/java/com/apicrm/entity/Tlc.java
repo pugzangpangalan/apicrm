@@ -55,7 +55,7 @@ public class Tlc implements Serializable {
 	private String icmsServiceOrder;
 	
 	@ManyToOne(optional = false)
-	@JoinColumn(name = "status_name", referencedColumnName = "status_name")
+	@JoinColumn(name = "status_id", referencedColumnName = "status_id")
 	private TlcStatus status;
 	
 	@Column(name = "site_visit_outcome")
