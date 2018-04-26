@@ -4,9 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.apicrm.entity.DoorKnockTeam;
-import com.apicrm.entity.TlcProject;
 import com.apicrm.repository.DoorKnockTeamRepository;
-import com.apicrm.repository.TlcProjectRepository;
 import com.apicrm.service.DoorKnockTeamService;
 
 @Service

@@ -3,12 +3,14 @@ package com.apicrm.entity;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -55,7 +57,8 @@ public class Tlc implements Serializable {
 	@Column(name = "team_id")
 	private long teamId;
 	
-	@Column(name = "status_id")
+	@ManyToOne(optional = false)
+	@JoinColumn(name = "status_name", referencedColumnName = "status_name")
 	private TlcStatus status;
 	
 	@Column(name = "site_visit_outcome")
@@ -73,9 +76,11 @@ public class Tlc implements Serializable {
 	@Column(name = "appointment_date")
 	private Date appointmentDate;
 	
+	@ManyToOne(optional = false)
 	@JoinColumn(name = "project_name", referencedColumnName = "project_name")
 	private TlcProject tlcProject;
 	
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "team_id", referencedColumnName = "team_id")
 	private DoorKnockTeam team;
 
@@ -238,5 +243,6 @@ public class Tlc implements Serializable {
 	public void setTeam(DoorKnockTeam team) {
 		this.team = team;
 	}
+
 	
 }

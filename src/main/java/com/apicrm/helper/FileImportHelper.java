@@ -8,6 +8,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 
 import com.apicrm.common.ApiCrmUtil;
 import com.apicrm.entity.Tlc;
@@ -52,19 +53,27 @@ public class FileImportHelper {
 					tlc.setCustomerName(removeUnecessaryChar(col[2]));
 					tlc.setContactNumber(removeUnecessaryChar(col[3]));
 					tlc.setSiteAccessInfo(removeUnecessaryChar(col[4]));
-					tlc.setDate(ApiCrmUtil.parseDate(removeUnecessaryChar(col[5])));
+					
+					if(!ApiCrmUtil.isNullOrEmpty(col[5])) {
+						tlc.setDate(ApiCrmUtil.parseDate(removeUnecessaryChar(col[5])));
+					}
+					
 					tlc.setTime(removeUnecessaryChar(col[6]));
 					tlc.setScopeDocSent(Integer.parseInt(removeUnecessaryChar(col[7])));
 					tlc.setProject(tlcProjectService.findByProjectName(removeUnecessaryChar(col[8])));
 					tlc.setChorusPortalOrder(removeUnecessaryChar(col[9]));
 					tlc.setIcmsServiceOrder(removeUnecessaryChar(col[10]));
 					tlc.setTeam(doorKnockTeamService.findByTeamName(removeUnecessaryChar(col[11])));
-					tlc.setStatus(tlcStatusService.findByStatusId(removeUnecessaryChar(col[12])));
+					tlc.setStatus(tlcStatusService.findByStatusName(removeUnecessaryChar(col[12])));
 					tlc.setSiteVisitOutcome(removeUnecessaryChar(col[13]));
 					tlc.setComments(removeUnecessaryChar(col[14]));
 					tlc.setScheduleOnce(Integer.parseInt(removeUnecessaryChar(col[15])));
 					tlc.setScopingDocCount(Integer.parseInt(removeUnecessaryChar(col[16])));
-					tlc.setAppointmentDate(ApiCrmUtil.parseDate(removeUnecessaryChar(col[17])));
+					
+					if(!ApiCrmUtil.isNullOrEmpty(col[17])) {
+						tlc.setAppointmentDate(ApiCrmUtil.parseDate(removeUnecessaryChar(col[17])));
+					}
+					
 					tlcList.add(tlc);
 					successRowCount++;
 				} else {

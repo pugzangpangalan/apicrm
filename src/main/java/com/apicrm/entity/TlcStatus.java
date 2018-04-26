@@ -18,17 +18,17 @@ public class TlcStatus implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "status_id")
-	private int id;
+	private int statusId;
 
 	@Column(name = "status_name")
 	private String statusName;
 
-	public int getId() {
-		return id;
+	public int getStatusId() {
+		return statusId;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setStatusId(int statusId) {
+		this.statusId = statusId;
 	}
 
 	public String getStatusName() {
