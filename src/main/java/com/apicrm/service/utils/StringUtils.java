@@ -6,11 +6,14 @@ import java.security.NoSuchAlgorithmException;
 import java.security.NoSuchProviderException;
 import java.security.PrivateKey;
 import java.security.SecureRandom;
+import java.util.HashMap;
+import java.util.Map;
 
+import com.google.gson.Gson;
 import com.sun.jersey.core.util.Base64;
 
 public class StringUtils {
-
+	static Gson gson = new Gson();
 	public  static void main(String[] args) {
 		try {
 			generateKeys();
@@ -55,5 +58,12 @@ public class StringUtils {
         String token = Long.toString( longToken, 16 ).toUpperCase();
         return ( username + ":" + token );
 	}
-
+	public static String genererateReturnMessage(String messageType,String message) {
+		Map<String,HashMap<String,String>> returnMap = new HashMap<String,HashMap<String,String>>();
+		HashMap<String,String> messageMap = new HashMap<String,String>();
+		messageMap.put(messageType, message);
+		returnMap.put("Message", messageMap);
+		return gson.toJson(returnMap);
+	}
+	
 }

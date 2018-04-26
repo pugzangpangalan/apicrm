@@ -16,4 +16,24 @@ public class TlcUserStatus {
 	private Long tlcUserStatusId;
 	@Column(name = "status_name")
 	private String statusName;
+	public TlcUserStatus() {}
+	public TlcUserStatus(String statusName) {
+		this.statusName = statusName;
+	}
+	public Long getTlcUserStatusId() {
+		return tlcUserStatusId;
+	}
+
+	public void setTlcUserStatusId(Long tlcUserStatusId) {
+		this.tlcUserStatusId = tlcUserStatusId;
+	}
+
+	public String getStatusName() {
+		return statusName;
+	}
+
+	public void setStatusName(String statusName) {
+		this.statusName = statusName;
+	}
+
 }

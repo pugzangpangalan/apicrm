@@ -46,7 +46,7 @@ public class TlcUser implements Serializable {
 	@SerializedName("role")
 	private String strRole;
 	@Transient
-	@SerializedName("status_name")
+	@SerializedName("status")
 	private String strStatusName;
 	@SerializedName("role_obj")
 	@ManyToOne(optional = false)
