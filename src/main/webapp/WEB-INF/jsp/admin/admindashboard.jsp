@@ -84,12 +84,43 @@
 	
 	<script  type="text/javascript">
 		function update(id) {
-			alert($('#tlcId'+id).text());
 			var tlcId = $('#tlcId'+id).text();
 			var address = $('#address'+id).text();
-			alert("./updateCampaign?tlcId=" +tlcId + "&address=" +address);
+			var customerName = $('#customerName'+id).text();
+			var contactNumber = $('#contactNumber'+id).text();
+			var siteAccessInfo = $('#siteAccessInfo'+id).text();
+			var installationDate = $('#installationDate'+id).text();
+			var installationTime = $('#installationTime'+id).text();
+			var scopeDocSent = $('#scopeDocSent'+id).text();
+			var tlcProject = $('#tlcProject'+id).text();
+			var chorusPortalOrder = $('#chorusPortalOrder'+id).text();
+			var icmsServiceOrder = $('#icmsServiceOrder'+id).text();
+			var team = $('#team'+id).text();
+			var status = $('#status'+id).text();
+			var siteVisitOutcome = $('#siteVisitOutcome'+id).text();
+			var comments = $('#comments'+id).text();
+			var scheduleOnce = $('#scheduleOnce'+id).text();
+			var scopingDocCount = $('#scopingDocCount'+id).text();
+			var appointmentDate = $('#appointmentDate'+id).text();
 			
-			location.href = "./updateCampaign?tlcId=" +tlcId + "&address=" +address;
+			location.href = "./updateCampaign?tlcId=" +tlcId 
+					+ "&address=" +address
+					+ "&customerName=" +customerName
+					+ "&contactNumber=" +contactNumber
+					+ "&siteAccessInfo=" +siteAccessInfo
+					+ "&installationDate=" +installationDate
+					+ "&installationTime=" +installationTime
+					+ "&scopeDocSent=" +scopeDocSent
+					+ "&tlcProject=" +tlcProject
+					+ "&chorusPortalOrder=" +chorusPortalOrder
+					+ "&icmsServiceOrder=" +icmsServiceOrder
+					+ "&team=" +team
+					+ "&status=" +status
+					+ "&siteVisitOutcome=" +siteVisitOutcome
+					+ "&comments=" +comments
+					+ "&scheduleOnce=" +scheduleOnce
+					+ "&scopingDocCount=" +scopingDocCount
+					+ "&appointmentDate=" +appointmentDate;
 		}
 		
 		$(document).ready(function() {
