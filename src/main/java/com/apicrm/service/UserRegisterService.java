@@ -14,4 +14,6 @@ public interface UserRegisterService {
 	public DkUser findUserByEmail(String email);
 	
 	public DkUser saveDkUser(DkUser user);
+	
+	public DkUser saveDkUser(DkUser user, boolean isEncodePassword);
 }

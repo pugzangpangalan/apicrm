@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.apicrm.entity.DkUser;
@@ -42,15 +43,23 @@ public class RegisterController {
 		JsonObject requestJson = element.getAsJsonObject();
 		String required = RequiredChecker.requiredCheck(arrayList, requestJson);
 		if (null != required) {
-			return ResponseEntity.status(HttpStatus.FORBIDDEN).body(su.genererateReturnMessage("Required Field", required));
+			return ResponseEntity.status(HttpStatus.FORBIDDEN)
+					.body(su.genererateReturnMessage("Required Field", required));
 		}
 		DkUser user = gson.fromJson(requestBody, DkUser.class);
-		if(null != userRegisterService.findUserByEmail(user.getEmailAddress())) {
-			return ResponseEntity.status(HttpStatus.FORBIDDEN).body(su.genererateReturnMessage("Error", "Email address already exists"));
+		if (null != userRegisterService.findUserByEmail(user.getEmailAddress())) {
+			return ResponseEntity.status(HttpStatus.FORBIDDEN)
+					.body(su.genererateReturnMessage("Error", "Email address already exists"));
 		}
-		
+
 		userRegisterService.saveDkUser(user);
 		return ResponseEntity.ok(su.genererateReturnMessage("Message", "User successfully added!"));
+	}
+
+	@RequestMapping(value = "/logoutapi", method = RequestMethod.GET)
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public void logout(HttpSession session) {
+		session.invalidate();
 	}
 
 }
