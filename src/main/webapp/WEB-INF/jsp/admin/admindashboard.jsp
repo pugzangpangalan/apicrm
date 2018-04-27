@@ -59,28 +59,28 @@
 					</tr>
 					</thead>
 					<tbody>
-					<c:forEach items="${campaignList }" var="campaign">
+					<c:forEach items="${campaign }" var="tlc">
 						<tr>
-							<td class="td-data" id="tlcId${campaign.id}">${campaign.tlcId }</td>
-							<td class="td-data" contenteditable="true" id="address${campaign.id}">${campaign.address }</td>
-							<td class="td-data" contenteditable="true" id="customerName${campaign.id}">${campaign.customerName }</td>
-							<td class="td-data" contenteditable="true" id="contactNumber${campaign.id}">${campaign.contactNumber }</td>
-							<td class="td-data" contenteditable="true" id="siteAccessInfo${campaign.id}">${campaign.siteAccessInfo }</td>
-							<td class="td-data" contenteditable="true" id="installationDate${campaign.id}">${campaign.formattedInstallationDate }</td>
-							<td class="td-data" contenteditable="true" id="installationTime${campaign.id}">${campaign.time }</td>
-							<td class="td-data" contenteditable="true" id="scopeDocSent${campaign.id}">${campaign.scopeDocSent }</td>
-							<td class="td-data" contenteditable="true" id="tlcProject${campaign.id}">${campaign.tlcProject.projectName }</td>
-							<td class="td-data" contenteditable="true" id="chorusPortalOrder${campaign.id}">${campaign.chorusPortalOrder }</td>
-							<td class="td-data" contenteditable="true" id="icmsServiceOrder${campaign.id}">${campaign.icmsServiceOrder }</td>
-							<td class="td-data" contenteditable="true" id="team${campaign.id}">${campaign.team.teamName }</td>
-							<td class="td-data" contenteditable="true" id="status${campaign.id}">${campaign.status.statusName }</td>
-							<td class="td-data" contenteditable="true" id="siteVisitOutcome${campaign.id}">${campaign.siteVisitOutcome }</td>
-							<td class="td-data" contenteditable="true" id="comments${campaign.id}">${campaign.comments }</td>
-							<td class="td-data" contenteditable="true" id="scheduleOnce${campaign.id}">${campaign.scheduleOnce }</td>
-							<td class="td-data" contenteditable="true" id="scopingDocCount${campaign.id}">${campaign.scopingDocCount }</td>
-							<td class="td-data" contenteditable="true" id="appointmentDate${campaign.id}">${campaign.formattedAppointmentDate }</td>
+							<td class="td-data" id="tlcId${tlc.id}">${tlc.tlcId }</td>
+							<td class="td-data" contenteditable="true" id="address${tlc.id}">${tlc.address }</td>
+							<td class="td-data" contenteditable="true" id="customerName${tlc.id}">${tlc.customerName }</td>
+							<td class="td-data" contenteditable="true" id="contactNumber${tlc.id}">${tlc.contactNumber }</td>
+							<td class="td-data" contenteditable="true" id="siteAccessInfo${tlc.id}">${tlc.siteAccessInfo }</td>
+							<td class="td-data" contenteditable="true" id="installationDate${tlc.id}">${tlc.formattedInstallationDate }</td>
+							<td class="td-data" contenteditable="true" id="installationTime${tlc.id}">${tlc.time }</td>
+							<td class="td-data" contenteditable="true" id="scopeDocSent${tlc.id}">${tlc.scopeDocSent }</td>
+							<td class="td-data" contenteditable="true" id="tlcProject${tlc.id}">${tlc.campaign.projectName }</td>
+							<td class="td-data" contenteditable="true" id="chorusPortalOrder${tlc.id}">${tlc.chorusPortalOrder }</td>
+							<td class="td-data" contenteditable="true" id="icmsServiceOrder${tlc.id}">${tlc.icmsServiceOrder }</td>
+							<td class="td-data" contenteditable="true" id="team${tlc.id}">${tlc.team.teamName }</td>
+							<td class="td-data" contenteditable="true" id="status${tlc.id}">${tlc.status.statusName }</td>
+							<td class="td-data" contenteditable="true" id="siteVisitOutcome${tlc.id}">${tlc.siteVisitOutcome }</td>
+							<td class="td-data" contenteditable="true" id="comments${tlc.id}">${tlc.comments }</td>
+							<td class="td-data" contenteditable="true" id="scheduleOnce${tlc.id}">${tlc.scheduleOnce }</td>
+							<td class="td-data" contenteditable="true" id="scopingDocCount${tlc.id}">${tlc.scopingDocCount }</td>
+							<td class="td-data" contenteditable="true" id="appointmentDate${tlc.id}">${tlc.formattedAppointmentDate }</td>
 							
-							<td><a href="#" id="updateId" onclick="update('${campaign.id}')">Update</a></td>
+							<td><a href="#" id="updateId" onclick="update('${tlc.id}')">Update</a></td>
 						</tr>
 					</c:forEach>
 	
@@ -213,7 +213,11 @@
 		}
 		
 		jQuery("input#fileUploadId").change(function () {
-		    alert(jQuery(this).val())
+		    if(jQuery(this).val() != null){
+		    	
+		    	
+		    }
+		    
 		});
 		
 

@@ -19,14 +19,14 @@ import org.springframework.stereotype.Component;
 import com.apicrm.common.ApiCrmUtil;
 import com.apicrm.entity.Tlc;
 import com.apicrm.service.DoorKnockTeamService;
-import com.apicrm.service.TlcProjectService;
+import com.apicrm.service.CampaignService;
 import com.apicrm.service.TlcStatusService;
 
 @Component
 public class FileImportHelper {
 	
 	@Autowired
-	private TlcProjectService tlcProjectService;
+	private CampaignService campaignService;
 
 	@Autowired
 	private TlcStatusService tlcStatusService;
@@ -90,16 +90,16 @@ public class FileImportHelper {
 					tlc.setSiteAccessInfo(removeUnecessaryChar(col[4]));
 					
 					if(!ApiCrmUtil.isNullOrEmpty(col[5])) {
-						tlc.setDate(ApiCrmUtil.parseDate(removeUnecessaryChar(col[5])));
+						tlc.setInstallationDate(ApiCrmUtil.parseDate(removeUnecessaryChar(col[5])));
 					}
 					
-					tlc.setTime(removeUnecessaryChar(col[6]));
+					tlc.setInstallationTime(removeUnecessaryChar(col[6]));
 					
 					if(!ApiCrmUtil.isNullOrEmpty(col[7])) {
 						tlc.setScopeDocSent(Integer.parseInt(removeUnecessaryChar(col[7])));
 					}
 					
-					tlc.setTlcProject(tlcProjectService.findByProjectName(removeUnecessaryChar(col[8])));
+					tlc.setCampaign(campaignService.findByCampaignName(removeUnecessaryChar(col[8])));
 					tlc.setChorusPortalOrder(removeUnecessaryChar(col[9]));
 					tlc.setIcmsServiceOrder(removeUnecessaryChar(col[10]));
 					tlc.setTeam(doorKnockTeamService.findByTeamName(removeUnecessaryChar(col[11])));
@@ -171,13 +171,13 @@ public class FileImportHelper {
                 fileWriter.append(COMMA_DELIMITER);
                 fileWriter.append(tlc.getSiteAccessInfo());
                 fileWriter.append(COMMA_DELIMITER);
-                fileWriter.append(formatDate(tlc.getDate()));
+                fileWriter.append(formatDate(tlc.getInstallationDate()));
                 fileWriter.append(COMMA_DELIMITER);
-                fileWriter.append(tlc.getTime());
+                fileWriter.append(tlc.getInstallationTime());
                 fileWriter.append(COMMA_DELIMITER);
                 fileWriter.append(String.valueOf(tlc.getScopeDocSent()));
                 fileWriter.append(COMMA_DELIMITER);
-                fileWriter.append(tlc.getTlcProject().getProjectName());
+                fileWriter.append(tlc.getCampaign().getProjectName());
                 fileWriter.append(COMMA_DELIMITER);
                 fileWriter.append(tlc.getChorusPortalOrder());
                 fileWriter.append(COMMA_DELIMITER);

@@ -26,10 +26,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.apicrm.entity.DoorKnockTeam;
 import com.apicrm.entity.Tlc;
-import com.apicrm.entity.TlcProject;
+import com.apicrm.entity.Campaign;
 import com.apicrm.entity.Token;
 import com.apicrm.service.DoorKnockTeamService;
-import com.apicrm.service.TlcProjectService;
+import com.apicrm.service.CampaignService;
 import com.apicrm.service.TlcService;
 import com.apicrm.service.TokenService;
 import com.google.gson.Gson;
@@ -44,7 +44,7 @@ public class ApiController {
 	private TlcService tlcService;
 	
 	@Autowired
-	private TlcProjectService tlcProjectService;
+	private CampaignService campaignService;
 	
 	@Autowired
 	private DoorKnockTeamService doorKnockTeamService;
@@ -79,8 +79,8 @@ public class ApiController {
 
 	@RequestMapping(value = "/project/{projectId}", method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	public TlcProject getProject(@PathVariable("projectId") String projectId) {
-		return tlcProjectService.findProjectById(Long.valueOf(projectId));
+	public Campaign getProject(@PathVariable("projectId") String projectId) {
+		return campaignService.findCampaignById(Long.valueOf(projectId));
 	}
 
 	@RequestMapping(value = "/team/{teamId}", method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)

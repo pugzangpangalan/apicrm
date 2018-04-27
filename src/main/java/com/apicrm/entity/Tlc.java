@@ -40,11 +40,11 @@ public class Tlc implements Serializable {
 	@Column(name = "site_access_info")
 	private String siteAccessInfo;
 	
-	@Column(name = "tlc_date")
-	private Date date;
+	@Column(name = "install_date")
+	private Date installationDate;
 	
-	@Column(name = "time")
-	private String time;
+	@Column(name = "install_time")
+	private String installationTime;
 	
 	@Column(name = "scope_doc_sent")
 	private int scopeDocSent;
@@ -75,8 +75,8 @@ public class Tlc implements Serializable {
 	private Date appointmentDate;
 	
 	@ManyToOne(optional = false)
-	@JoinColumn(name = "project_name", referencedColumnName = "project_name")
-	private TlcProject tlcProject;
+	@JoinColumn(name = "campaign_id", referencedColumnName = "campaign_id")
+	private Campaign campaign;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "team_id", referencedColumnName = "team_id")
@@ -130,20 +130,20 @@ public class Tlc implements Serializable {
 		this.siteAccessInfo = siteAccessInfo;
 	}
 
-	public Date getDate() {
-		return date;
+	public Date getInstallationDate() {
+		return installationDate;
 	}
 
-	public void setDate(Date date) {
-		this.date = date;
+	public void setInstallationDate(Date installationDate) {
+		this.installationDate = installationDate;
 	}
 
-	public String getTime() {
-		return time;
+	public String getInstallationTime() {
+		return installationTime;
 	}
 
-	public void setTime(String time) {
-		this.time = time;
+	public void setInstallationTime(String installationTime) {
+		this.installationTime = installationTime;
 	}
 
 	public int getScopeDocSent() {
@@ -226,17 +226,17 @@ public class Tlc implements Serializable {
 		this.team = team;
 	}
 
-	public TlcProject getTlcProject() {
-		return tlcProject;
+	public Campaign getCampaign() {
+		return campaign;
 	}
 
-	public void setTlcProject(TlcProject tlcProject) {
-		this.tlcProject = tlcProject;
+	public void setCampaign(Campaign campaign) {
+		this.campaign = campaign;
 	}
 	
 	public String getFormattedInstallationDate() {
-		if(date == null) return "";
-		return new SimpleDateFormat("dd/MM/yyyy").format(date);
+		if(installationDate == null) return "";
+		return new SimpleDateFormat("dd/MM/yyyy").format(installationDate);
 	}
 	
 	public String getFormattedAppointmentDate() {
@@ -249,10 +249,10 @@ public class Tlc implements Serializable {
 		to.setCustomerName(from.getCustomerName());
 		to.setContactNumber(from.getContactNumber());
 		to.setSiteAccessInfo(from.getSiteAccessInfo());
-		to.setDate(from.getDate());
-		to.setTime(from.getTime());
+		to.setInstallationDate(from.getInstallationDate());
+		to.setInstallationTime(from.getInstallationTime());
 		to.setScopeDocSent(from.getScopeDocSent());
-		to.setTlcProject(from.getTlcProject());
+		to.setCampaign(from.getCampaign());
 		to.setChorusPortalOrder(from.getChorusPortalOrder());
 		to.setIcmsServiceOrder(from.icmsServiceOrder);
 		to.setTeam(from.getTeam());

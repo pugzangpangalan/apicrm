@@ -21,7 +21,7 @@ import com.apicrm.entity.DkUser;
 import com.apicrm.entity.Tlc;
 import com.apicrm.helper.DoorKnockersMessageHelper;
 import com.apicrm.service.DoorKnockTeamService;
-import com.apicrm.service.TlcProjectService;
+import com.apicrm.service.CampaignService;
 import com.apicrm.service.TlcService;
 import com.apicrm.service.TlcStatusService;
 import com.apicrm.service.UserService;
@@ -34,7 +34,7 @@ public class AdminDashboardController {
 	private TlcService tlcService;
 	
 	@Autowired
-	private TlcProjectService projectService;	
+	private CampaignService projectService;	
 	
 	@Autowired
 	private DoorKnockTeamService dktService;
@@ -86,14 +86,14 @@ public class AdminDashboardController {
 		campaign.setCustomerName(customerName);
 		campaign.setContactNumber(contactNumber);
 		campaign.setSiteAccessInfo(siteAccessInfo);
-		campaign.setTime(installationTime);
+		campaign.setInstallationTime(installationTime);
 		campaign.setChorusPortalOrder(chorusPortalOrder);
 		campaign.setIcmsServiceOrder(icmsServiceOrder);
 		campaign.setSiteVisitOutcome(siteVisitOutcome);
 		campaign.setComments(comments);
 		
 		if(!ApiCrmUtil.isNullOrEmpty(installationDate)) {
-			campaign.setDate(ApiCrmUtil.parseDate(installationDate));
+			campaign.setInstallationDate(ApiCrmUtil.parseDate(installationDate));
 		}
 		
 		if(!ApiCrmUtil.isNullOrEmpty(scopeDocSent) ) {
@@ -101,7 +101,7 @@ public class AdminDashboardController {
 		}
 		
 		if(!ApiCrmUtil.isNullOrEmpty(tlcProject)) {
-			campaign.setTlcProject(projectService.findByProjectName(tlcProject));
+			campaign.setCampaign(projectService.findByCampaignName(tlcProject));
 		}
 		
 		if(!ApiCrmUtil.isNullOrEmpty(team)) {
