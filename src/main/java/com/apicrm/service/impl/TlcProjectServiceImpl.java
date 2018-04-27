@@ -19,7 +19,7 @@ public class TlcProjectServiceImpl implements TlcProjectService {
 	}
 	
 	public TlcProject findProjectById(long id){
-		return tlcProjectRepository.findOne(id);
+		return tlcProjectRepository.getOne(id);
 		
 	}
 }

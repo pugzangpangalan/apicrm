@@ -18,6 +18,6 @@ public class DoorKnockTeamServiceImpl implements DoorKnockTeamService {
 		return doorKnockTeam != null ? doorKnockTeam : new DoorKnockTeam();
 	}
 	public DoorKnockTeam findByTeamId(long teamId) {
-		return doorKnockTeamRepository.findOne(teamId);
+		return doorKnockTeamRepository.getOne(teamId);
 	}
 }
