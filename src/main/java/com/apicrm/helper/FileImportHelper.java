@@ -99,7 +99,7 @@ public class FileImportHelper {
 						tlc.setScopeDocSent(Integer.parseInt(removeUnecessaryChar(col[7])));
 					}
 					
-					tlc.setProject(tlcProjectService.findByProjectName(removeUnecessaryChar(col[8])));
+					tlc.setTlcProject(tlcProjectService.findByProjectName(removeUnecessaryChar(col[8])));
 					tlc.setChorusPortalOrder(removeUnecessaryChar(col[9]));
 					tlc.setIcmsServiceOrder(removeUnecessaryChar(col[10]));
 					tlc.setTeam(doorKnockTeamService.findByTeamName(removeUnecessaryChar(col[11])));
@@ -177,7 +177,7 @@ public class FileImportHelper {
                 fileWriter.append(COMMA_DELIMITER);
                 fileWriter.append(String.valueOf(tlc.getScopeDocSent()));
                 fileWriter.append(COMMA_DELIMITER);
-                fileWriter.append(tlc.getProject().getProjectName());
+                fileWriter.append(tlc.getTlcProject().getProjectName());
                 fileWriter.append(COMMA_DELIMITER);
                 fileWriter.append(tlc.getChorusPortalOrder());
                 fileWriter.append(COMMA_DELIMITER);

@@ -1,6 +1,7 @@
 package com.apicrm.entity;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.persistence.CascadeType;
@@ -217,14 +218,6 @@ public class Tlc implements Serializable {
 		this.siteVisitOutcome = siteVisitOutcome;
 	}
 
-	public TlcProject getProject() {
-		return tlcProject;
-	}
-
-	public void setProject(TlcProject tlcProject) {
-		this.tlcProject = tlcProject;
-	}
-
 	public DoorKnockTeam getTeam() {
 		return team;
 	}
@@ -233,5 +226,22 @@ public class Tlc implements Serializable {
 		this.team = team;
 	}
 
+	public TlcProject getTlcProject() {
+		return tlcProject;
+	}
+
+	public void setTlcProject(TlcProject tlcProject) {
+		this.tlcProject = tlcProject;
+	}
+	
+	public String getFormattedInstallationDate() {
+		if(date == null) return "";
+		return new SimpleDateFormat("dd/MM/yyyy").format(date);
+	}
+	
+	public String getFormattedAppointmentDate() {
+		if(appointmentDate == null) return "";
+		return new SimpleDateFormat("dd/MM/yyyy").format(appointmentDate);
+	}
 	
 }

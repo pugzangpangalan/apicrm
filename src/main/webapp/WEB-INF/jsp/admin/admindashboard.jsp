@@ -52,23 +52,23 @@
 					<tbody>
 					<c:forEach items="${campaignList }" var="campaign">
 						<tr>
-							<td contenteditable="true" id="tlcId${campaign.id}">${campaign.tlcId }</td>
-							<td contenteditable="true" id="address${campaign.id}">${campaign.address }</td>
-							<td contenteditable="true" id="customerName${campaign.id}">${campaign.customerName }</td>
-							<td contenteditable="true" id="contactNumber${campaign.id}">${campaign.contactNumber }</td>
-							<td contenteditable="true" id="siteAccessInfo${campaign.id}">${campaign.siteAccessInfo }</td>
-							<td contenteditable="true" id="installationDate${campaign.id}">${campaign.date }</td>
-							<td contenteditable="true" id="installationTime${campaign.id}">${campaign.time }</td>
-							<td contenteditable="true" id="scopeDocSent${campaign.id}">${campaign.scopeDocSent }</td>
-							<td contenteditable="true" id="chorusPortalOrder${campaign.id}">${campaign.chorusPortalOrder }</td>
-							<td contenteditable="true" id="icmsServiceOrder${campaign.id}">${campaign.icmsServiceOrder }</td>
-							<td contenteditable="true" id="team${campaign.id}">${campaign.team.teamName }</td>
-							<td contenteditable="true" id="status${campaign.id}">${campaign.status.statusName }</td>
-							<td contenteditable="true" id="siteVisitOutcome${campaign.id}">${campaign.siteVisitOutcome }</td>
-							<td contenteditable="true" id="comments${campaign.id}">${campaign.comments }</td>
-							<td contenteditable="true" id="scheduleOnce${campaign.id}">${campaign.scheduleOnce }</td>
-							<td contenteditable="true" id="scopingDocCount${campaign.id}">${campaign.scopingDocCount }</td>
-							<td contenteditable="true" id="appointmentDate${campaign.id}">${campaign.appointmentDate }</td>
+							<td class="td-data" id="tlcId${campaign.id}">${campaign.tlcId }</td>
+							<td class="td-data" contenteditable="true" id="address${campaign.id}">${campaign.address }</td>
+							<td class="td-data" contenteditable="true" id="customerName${campaign.id}">${campaign.customerName }</td>
+							<td class="td-data" contenteditable="true" id="contactNumber${campaign.id}">${campaign.contactNumber }</td>
+							<td class="td-data" contenteditable="true" id="siteAccessInfo${campaign.id}">${campaign.siteAccessInfo }</td>
+							<td class="td-data" contenteditable="true" id="installationDate${campaign.id}">${campaign.date }</td>
+							<td class="td-data" contenteditable="true" id="installationTime${campaign.id}">${campaign.time }</td>
+							<td class="td-data" contenteditable="true" id="scopeDocSent${campaign.id}">${campaign.scopeDocSent }</td>
+							<td class="td-data" contenteditable="true" id="chorusPortalOrder${campaign.id}">${campaign.chorusPortalOrder }</td>
+							<td class="td-data" contenteditable="true" id="icmsServiceOrder${campaign.id}">${campaign.icmsServiceOrder }</td>
+							<td class="td-data" contenteditable="true" id="team${campaign.id}">${campaign.team.teamName }</td>
+							<td class="td-data" contenteditable="true" id="status${campaign.id}">${campaign.status.statusName }</td>
+							<td class="td-data" contenteditable="true" id="siteVisitOutcome${campaign.id}">${campaign.siteVisitOutcome }</td>
+							<td class="td-data" contenteditable="true" id="comments${campaign.id}">${campaign.comments }</td>
+							<td class="td-data" contenteditable="true" id="scheduleOnce${campaign.id}">${campaign.scheduleOnce }</td>
+							<td class="td-data" contenteditable="true" id="scopingDocCount${campaign.id}">${campaign.scopingDocCount }</td>
+							<td class="td-data" contenteditable="true" id="appointmentDate${campaign.id}">${campaign.appointmentDate }</td>
 							
 							<td><a href="#" id="updateId" onclick="update('${campaign.id}')">Update</a></td>
 						</tr>
