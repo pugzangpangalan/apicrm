@@ -4,26 +4,29 @@
 <html>
 <head>
 <meta charset="utf-8" />
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-	crossorigin="anonymous">
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gijgo@1.9.6/js/gijgo.js"
-	type="text/javascript"></script>
-<link href="https://cdn.jsdelivr.net/npm/gijgo@1.9.6/css/gijgo.css"
-	rel="stylesheet" type="text/css" />
+<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/1.5.1/js/dataTables.buttons.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.flash.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.html5.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.print.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
 <link rel="stylesheet" href="/css/table.css">
 </head>
 <body>
 	<div class="container">
 		<h1>List of all Campaign</h1>
 
-		<div id="table" class="table-editable">
-			<span class="table-add glyphicon glyphicon-plus"></span>
-			<form:form>
-			
-				<table class="table">
+		<div id="table1" class="table-editable">
+			<form:form>  
+				<table class="table" id="anxtable" >
+			<thead>  
 					<tr>
 						<th>TLC Id</th>
 						<th>Location / Address</th>
@@ -43,13 +46,14 @@
 						<th>Schedule Once</th>
 						<th>Scoping Document</th>
 						<th>Door-knock Appointment Date</th>
-						<th></th>
 						
 					</tr>
+					</thead>
+					<tbody>
 					<c:forEach items="${campaignList }" var="campaign">
 						<tr>
 							<td contenteditable="true" id="tlcId${campaign.id}">${campaign.tlcId }</td>
-							<td contenteditable="true" id="address${campaign.id}">${campaign.address }</td>
+							<td contenteditable="true" class="td-data" id="address${campaign.id}">${campaign.address }</td>
 							<td contenteditable="true" id="customerName${campaign.id}">${campaign.customerName }</td>
 							<td contenteditable="true" id="contactNumber${campaign.id}">${campaign.contactNumber }</td>
 							<td contenteditable="true" id="siteAccessInfo${campaign.id}">${campaign.siteAccessInfo }</td>
@@ -70,11 +74,7 @@
 						</tr>
 					</c:forEach>
 	
-					<!-- This is our clonable table line -->
-					<tr class="hide">
-						<td contenteditable="true">Untitled</td>
-						<td contenteditable="true">undefined</td>
-					</tr>
+					</tbody>
 				</table>
 			
 			</form:form>
@@ -84,7 +84,7 @@
 		<p id="export"></p>
 	</div>
 	
-	<script>
+	<script  type="text/javascript">
 		function update(id) {
 			alert($('#tlcId'+id).text());
 			var tlcId = $('#tlcId'+id).text();
@@ -93,6 +93,29 @@
 			
 			location.href = "./updateCampaign?tlcId=" +tlcId + "&address=" +address;
 		}
+		
+		$(document).ready(function() {
+			$('#anxtable').DataTable({
+	            "iDisplayLength": 10,
+	            "aLengthMenu": [[10, 20, 50, -1], [10, 20, 50, "All"]],
+	            "pagingType": "simple_numbers",
+	            "language": {
+	                searchPlaceholder: "Search",
+	                search: "",
+	                info:           "Showing _START_ to _END_ of _TOTAL_ -",
+	                infoEmpty:      "Showing 0 to 0 of 0 entries",
+	                paginate: {
+	                    previous: "Prev"
+	                 }
+
+	            },
+	            "dom": '<"top"Bf>rt<"bottom"ilp><"clear">',
+	            	"buttons": [
+	                     'csv',
+	                     'excel'
+	                ]
+	        });
+		});
 	</script>
 </body>
 </html>

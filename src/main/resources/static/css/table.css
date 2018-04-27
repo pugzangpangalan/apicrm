@@ -1,4 +1,4 @@
-@import "compass/css3";
+
 
 .table-editable {
   position: relative;
@@ -37,3 +37,114 @@
     color: #0b0;
   }
 }
+
+#anxtable {
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	border-collapse: collapse;
+	width: 100%;
+	margin-top: 2%;
+}
+
+#anxtable td, #anxtable th {
+	padding: 8px;
+}
+
+#anxtable tr:nth-child(even) {
+	background-color: #34495E;
+	border-color: lighten(#34495E, 10%);
+}
+
+#anxtable tr:hover {
+	background-color: #418a95;
+}
+
+#anxtable th {
+	padding-top: 12px;
+	padding-bottom: 12px;
+	text-align: left;
+	background-color: #3399cc;
+	color: whitesmoke;
+}
+
+#anxtable td {
+	color: #36454F;
+	background-color: #d9edf7;
+}
+
+<!-- DATA TABLE -->
+#anxtable_length {
+	float: left;
+}
+
+#anxtable_filter {
+	float: right;
+}
+
+#anxtable_info {
+	color: #36454F;
+	float: left;
+}
+
+.dataTables_paginate {
+    background-color: lightslategrey;
+    float: right;
+}
+
+.dataTables_paginate a {
+    color: whitesmoke;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color .3s;
+    border: 1px solid #ddd;
+}
+
+.dataTables_paginate a.active {
+    background-color: #4CAF50;
+    color: white;
+    border: 1px solid #4CAF50;
+}
+
+.dataTables_paginate a:hover:not(.active) {
+	background-color: #ddd; 
+	color: #36454F;
+}
+
+.btnApprove {
+	background-color: cadetblue;
+	width: 90px;
+}
+
+.btnReject {
+	background-color: crimson;
+	width: 90px;
+}
+
+.dataTables_length{
+	float: left;
+	color: #36454F;
+	margin-left: 10px;
+}
+.dataTables_length select{
+	color: black;
+}
+
+.dataTables_filter{
+	margin-bottom: 5px;
+}
+
+#anxtable.table{
+	margin-bottom: 12px;
+}
+
+.td-data {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.container{
+	width: 100%;
+}
+
+
