@@ -15,7 +15,7 @@
 								My Account</a></li>
 					</ul>
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="/logout" id="logoutId"><span
+					<li><a href="#" id="logoutId"><span
 							class="glyphicon glyphicon-log-out"></span> Log out</a></li>
 				</ul>
 			</div>
