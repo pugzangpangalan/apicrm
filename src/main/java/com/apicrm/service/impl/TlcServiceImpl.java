@@ -1,7 +1,5 @@
 package com.apicrm.service.impl;
 
-import java.awt.Desktop;
-import java.io.File;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,6 +53,15 @@ public class TlcServiceImpl implements TlcService {
 			fileImportHelper.openFile(fileName);
 		}
 		return fileName;
+	}
+	
+	@Override
+	public String updateCampaign(Tlc tlc) {
+		Tlc campaign = tlcRepository.findByTlcId(tlc.getTlcId());
+		if(campaign != null) {
+			tlcRepository.saveAndFlush(campaign);
+		}
+		return campaign.getTlcId();
 	}
 	
 }

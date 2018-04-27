@@ -12,7 +12,8 @@ import javax.xml.bind.DatatypeConverter;
 
 public class TestUploader {
 
-	public static void main(String[] args) throws IOException{
+	// FOR TESTING ONLY
+	/*public static void main(String[] args) throws IOException{
 		String imagePath = "C:\\temp\\ucg2test.csv";
 		System.out.println("=================Encoder Image to Base 64!=================");
 		String base64ImageString = encoder(imagePath);
@@ -21,7 +22,7 @@ public class TestUploader {
 	
 		System.out.println("DONE!");
  
-	}
+	}*/
 
 
  	@SuppressWarnings("resource")
