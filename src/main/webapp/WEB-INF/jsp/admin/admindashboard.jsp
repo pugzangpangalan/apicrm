@@ -15,6 +15,7 @@
 <script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.html5.min.js"></script>
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.print.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
 <link rel="stylesheet" href="/css/table.css">
@@ -88,6 +89,8 @@
 			
 			</form:form>
 		</div>
+		<button value="LEFT" id="left" ><i class="fa fa-angle-left" style="font-size:60px;"></i></button>
+		<button value="RIGHT" id="right" ><i class="fa fa-angle-right" style="font-size:60px;"></i></button>
 
 	</div>
 	
@@ -162,6 +165,47 @@
 	            "scrollX": true
 	        });
 		});
+		
+		$('#left').hover(function () {
+			scrollLeft();
+		});
+
+		$('#right').hover(function () {
+			scrollRight();
+		});
+		
+		$('#left').click(function () {
+			scrollLeft();
+		});
+
+		$('#right').click(function () {
+			scrollRight();
+		});
+		
+		function scrollRight(){
+			var leftPos = $('div.dataTables_scrollBody').scrollLeft();
+		    var rightX = $('div.dataTables_scrollBody').width();
+		    $("div.dataTables_scrollBody").animate({
+		        scrollLeft: rightX
+		    }, 1000,hide($('#right'),$('#left')));
+		}
+		
+		function scrollLeft(){
+			var leftPos = $('div.dataTables_scrollBody').scrollLeft();
+		    $("div.dataTables_scrollBody").animate({
+		        scrollLeft: 0
+		    }, 1000,hide($('#left'),$('#right')));
+		}
+		
+		function hide(x,y){
+			
+			x.fadeOut(2000);
+			y.fadeIn(2000);
+		}
+		
+		
+		
+
 	</script>
 </body>
 </html>
