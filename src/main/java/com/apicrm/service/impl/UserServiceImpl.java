@@ -12,17 +12,21 @@ import com.apicrm.entity.Role;
 import com.apicrm.repository.DkUserRepository;
 import com.apicrm.repository.DkUserStatusRepository;
 import com.apicrm.repository.RoleRepository;
-import com.apicrm.service.UserRegisterService;
+import com.apicrm.service.DoorKnockTeamService;
+import com.apicrm.service.UserService;
 
 @Service
 @Transactional
-public class UserRegisterServiceImpl implements UserRegisterService {
+public class UserServiceImpl implements UserService {
 	@Autowired
 	RoleRepository roleRepository;
 	@Autowired
 	DkUserStatusRepository dKUserStatusRepository;
 	@Autowired
 	DkUserRepository dKUserRepository;
+	
+	@Autowired
+	private DoorKnockTeamService dktService;
 	
 	@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
@@ -65,6 +69,7 @@ public class UserRegisterServiceImpl implements UserRegisterService {
 			user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
 		}
 		user.setRole(getOrInsertRole(user.getStrRole().trim()));
+		user.setDoorKnockTeam(dktService.findByTeamName(user.getDoorKnockTeamName()));
 		user.setDkUserStatus(getOrInserTlcUserStatus(user.getStrStatusName().trim()));
 		return dKUserRepository.save(user);
 	}

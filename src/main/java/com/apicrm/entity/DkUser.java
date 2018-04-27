@@ -42,12 +42,15 @@ public class DkUser implements Serializable {
 	@SerializedName("password")
 	@Value("password")
 	private String password;
+	
 	@Transient
 	@SerializedName("role")
 	private String strRole;
+	
 	@Transient
 	@SerializedName("status")
 	private String strStatusName;
+	
 	@SerializedName("role_obj")
 	@ManyToOne(optional = false)
 	@JoinColumn(name = "role_name", referencedColumnName = "role_name")
@@ -57,6 +60,15 @@ public class DkUser implements Serializable {
 	@ManyToOne(optional = false)
 	@JoinColumn(name = "status_name", referencedColumnName = "status_name")
 	private DkUserStatus dkUserStatus;
+	
+	@Transient
+	@SerializedName("dk_team_name")
+	private String doorKnockTeamName;
+	
+	@SerializedName("door_knock_team_obj")
+	@ManyToOne(optional = false)
+	@JoinColumn(name = "team_name", referencedColumnName = "team_name")
+	private DoorKnockTeam doorKnockTeam;
 
 	public String getFirstName() {
 		return firstName;
@@ -130,5 +142,21 @@ public class DkUser implements Serializable {
 
 	public void setStrStatusName(String strStatusName) {
 		this.strStatusName = strStatusName;
+	}
+
+	public String getDoorKnockTeamName() {
+		return doorKnockTeamName;
+	}
+
+	public void setDoorKnockTeamName(String doorKnockTeamName) {
+		this.doorKnockTeamName = doorKnockTeamName;
+	}
+
+	public DoorKnockTeam getDoorKnockTeam() {
+		return doorKnockTeam;
+	}
+
+	public void setDoorKnockTeam(DoorKnockTeam doorKnockTeam) {
+		this.doorKnockTeam = doorKnockTeam;
 	}
 }

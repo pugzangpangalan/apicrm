@@ -6,7 +6,7 @@ import com.apicrm.entity.Role;
 import com.apicrm.entity.DkUser;
 import com.apicrm.entity.DkUserStatus;
 @Service
-public interface UserRegisterService {
+public interface UserService {
 	public Role getOrInsertRole(String roleName);
 
 	public DkUserStatus getOrInserTlcUserStatus(String statusName);

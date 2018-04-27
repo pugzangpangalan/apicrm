@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.apicrm.entity.DkUser;
-import com.apicrm.service.UserRegisterService;
+import com.apicrm.service.UserService;
 import com.apicrm.utils.RequiredChecker;
 import com.apicrm.utils.StringUtils;
 import com.google.gson.Gson;
@@ -27,7 +27,7 @@ public class RegisterController {
 	Gson gson = new Gson();
 
 	@Autowired
-	UserRegisterService userRegisterService;
+	UserService userRegisterService;
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<?> register(@RequestBody String requestBody, HttpSession session) {

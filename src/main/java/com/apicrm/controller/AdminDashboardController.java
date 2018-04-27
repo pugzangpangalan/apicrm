@@ -3,8 +3,12 @@ package com.apicrm.controller;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -13,12 +17,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.apicrm.common.AlertStyleMessages;
 import com.apicrm.common.ApiCrmUtil;
+import com.apicrm.entity.DkUser;
 import com.apicrm.entity.Tlc;
 import com.apicrm.helper.DoorKnockersMessageHelper;
 import com.apicrm.service.DoorKnockTeamService;
 import com.apicrm.service.TlcProjectService;
 import com.apicrm.service.TlcService;
 import com.apicrm.service.TlcStatusService;
+import com.apicrm.service.UserService;
 
 @Controller
 @RequestMapping(value = "admin")
@@ -38,10 +44,22 @@ public class AdminDashboardController {
 	
 	@Autowired
 	private DoorKnockersMessageHelper dkmHelper;
+	
+	@Autowired
+	private UserService userService;
+	
 
 	@RequestMapping(value = "/")
-	public String showAdminDashboard(Map<String, Object> model) {
-		model.put("campaignList", tlcService.getAllTlc());
+	public String showAdminDashboard(Map<String, Object> model, HttpSession session) {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		DkUser dkUser = userService.findUserByEmail(authentication.getName());
+		
+		if(dkUser != null && !ApiCrmUtil.isNullOrEmpty(dkUser.getDoorKnockTeamName())) {
+			
+		} else {
+			model.put("campaignList", tlcService.getAllTlc());
+		}
+		
 		return "admin/admindashboard";
 	}
 	
