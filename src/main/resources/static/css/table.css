@@ -76,7 +76,7 @@
 	float: left;
 }
 
-#anxtable_filter {
+#anxtable_filter{
 	float: right;
 }
 
@@ -130,7 +130,7 @@
 }
 
 .dataTables_filter{
-	margin-bottom: 5px;
+	margin-top: 5px;
 }
 
 #anxtable.table{
@@ -146,5 +146,15 @@
 .container{
 	width: 100%;
 }
+
+.marg-left{
+	margin-left:100px
+}
+
+.btn{
+	margin-bottom: 5px;
+}
+
+
 
 

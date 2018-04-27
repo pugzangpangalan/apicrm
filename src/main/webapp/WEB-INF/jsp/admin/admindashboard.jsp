@@ -53,7 +53,7 @@
 					<c:forEach items="${campaignList }" var="campaign">
 						<tr>
 							<td contenteditable="true" id="tlcId${campaign.id}">${campaign.tlcId }</td>
-							<td contenteditable="true" class="td-data" id="address${campaign.id}">${campaign.address }</td>
+							<td contenteditable="true" id="address${campaign.id}">${campaign.address }</td>
 							<td contenteditable="true" id="customerName${campaign.id}">${campaign.customerName }</td>
 							<td contenteditable="true" id="contactNumber${campaign.id}">${campaign.contactNumber }</td>
 							<td contenteditable="true" id="siteAccessInfo${campaign.id}">${campaign.siteAccessInfo }</td>
@@ -80,8 +80,6 @@
 			</form:form>
 		</div>
 
-		<button id="export-btn" class="btn btn-primary">Export Data</button>
-		<p id="export"></p>
 	</div>
 	
 	<script  type="text/javascript">
@@ -109,11 +107,15 @@
 	                 }
 
 	            },
-	            "dom": '<"top"Bf>rt<"bottom"ilp><"clear">',
-	            	"buttons": [
-	                     'csv',
-	                     'excel'
-	                ]
+	            "dom": '<"top"<"marg-left col-sm-9"><"col-sm-1 text-right"B>f>rt<"bottom"ilp><"clear">',
+            	"buttons": [
+                     {
+                    	 extend: 'csv',
+                    	 filename: 'Campaign',
+                    	 text: "Export CSV",
+                    	 className: 'btn btn-success' 
+                     }
+                ]
 	        });
 		});
 	</script>
