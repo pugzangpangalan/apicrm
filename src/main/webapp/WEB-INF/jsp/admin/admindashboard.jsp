@@ -23,6 +23,11 @@
 	<div class="container">
 		<h1>List of all Campaign</h1>
 
+		<c:if test="${not empty msgDetails}">
+			<div class="${msgCss }">
+			    ${msgDetails }
+			</div>
+		</c:if>
 		<div id="table1" class="table-editable">
 			<form:form>  
 				<table class="table" id="anxtable" >
@@ -58,7 +63,7 @@
 							<td class="td-data" contenteditable="true" id="customerName${campaign.id}">${campaign.customerName }</td>
 							<td class="td-data" contenteditable="true" id="contactNumber${campaign.id}">${campaign.contactNumber }</td>
 							<td class="td-data" contenteditable="true" id="siteAccessInfo${campaign.id}">${campaign.siteAccessInfo }</td>
-							<td class="td-data" contenteditable="true" id="installationDate${campaign.id}">${campaign.date }</td>
+							<td class="td-data" contenteditable="true" id="installationDate${campaign.id}">${campaign.formattedInstallationDate }</td>
 							<td class="td-data" contenteditable="true" id="installationTime${campaign.id}">${campaign.time }</td>
 							<td class="td-data" contenteditable="true" id="scopeDocSent${campaign.id}">${campaign.scopeDocSent }</td>
 							<td class="td-data" contenteditable="true" id="tlcProject${campaign.id}">${campaign.tlcProject.projectName }</td>
@@ -70,7 +75,7 @@
 							<td class="td-data" contenteditable="true" id="comments${campaign.id}">${campaign.comments }</td>
 							<td class="td-data" contenteditable="true" id="scheduleOnce${campaign.id}">${campaign.scheduleOnce }</td>
 							<td class="td-data" contenteditable="true" id="scopingDocCount${campaign.id}">${campaign.scopingDocCount }</td>
-							<td class="td-data" contenteditable="true" id="appointmentDate${campaign.id}">${campaign.appointmentDate }</td>
+							<td class="td-data" contenteditable="true" id="appointmentDate${campaign.id}">${campaign.formattedAppointmentDate }</td>
 							
 							<td><a href="#" id="updateId" onclick="update('${campaign.id}')">Update</a></td>
 						</tr>

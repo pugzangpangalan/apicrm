@@ -244,4 +244,24 @@ public class Tlc implements Serializable {
 		return new SimpleDateFormat("dd/MM/yyyy").format(appointmentDate);
 	}
 	
+	public void deepCopy(Tlc to, Tlc from) {
+		to.setAddress(from.getAddress());
+		to.setCustomerName(from.getCustomerName());
+		to.setContactNumber(from.getContactNumber());
+		to.setSiteAccessInfo(from.getSiteAccessInfo());
+		to.setDate(from.getDate());
+		to.setTime(from.getTime());
+		to.setScopeDocSent(from.getScopeDocSent());
+		to.setTlcProject(from.getTlcProject());
+		to.setChorusPortalOrder(from.getChorusPortalOrder());
+		to.setIcmsServiceOrder(from.icmsServiceOrder);
+		to.setTeam(from.getTeam());
+		to.setStatus(from.getStatus());
+		to.setSiteVisitOutcome(from.getSiteVisitOutcome());
+		to.setComments(from.getComments());
+		to.setScheduleOnce(from.getScheduleOnce());
+		to.setScopeDocSent(from.getScopeDocSent());
+		to.setAppointmentDate(from.getAppointmentDate());
+	}
+	
 }

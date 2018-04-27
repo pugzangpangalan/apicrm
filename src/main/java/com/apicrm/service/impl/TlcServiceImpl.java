@@ -59,6 +59,7 @@ public class TlcServiceImpl implements TlcService {
 	public String updateCampaign(Tlc tlc) {
 		Tlc campaign = tlcRepository.findByTlcId(tlc.getTlcId());
 		if(campaign != null) {
+			campaign.deepCopy(campaign, tlc);
 			tlcRepository.saveAndFlush(campaign);
 		}
 		return campaign.getTlcId();

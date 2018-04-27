@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.apicrm.common.AlertStyleMessages;
 import com.apicrm.common.ApiCrmUtil;
 import com.apicrm.entity.Tlc;
+import com.apicrm.helper.DoorKnockersMessageHelper;
 import com.apicrm.service.DoorKnockTeamService;
 import com.apicrm.service.TlcProjectService;
 import com.apicrm.service.TlcService;
@@ -33,6 +35,9 @@ public class AdminDashboardController {
 	
 	@Autowired
 	private TlcStatusService statusService;
+	
+	@Autowired
+	private DoorKnockersMessageHelper dkmHelper;
 
 	@RequestMapping(value = "/")
 	public String showAdminDashboard(Map<String, Object> model) {
@@ -54,7 +59,8 @@ public class AdminDashboardController {
 			 @RequestParam("icmsServiceOrder") String icmsServiceOrder,  @RequestParam("team") String team, 
 			 @RequestParam("status") String status,  @RequestParam("siteVisitOutcome") String siteVisitOutcome, 
 			 @RequestParam("comments") String comments,  @RequestParam("scheduleOnce") String scheduleOnce, 
-			 @RequestParam("scopingDocCount") String scopingDocCount,  @RequestParam("appointmentDate") String appointmentDate) {
+			 @RequestParam("scopingDocCount") String scopingDocCount,  @RequestParam("appointmentDate") String appointmentDate, 
+			 Map<String, Object> model) {
 		
 		Tlc campaign = new Tlc();
 		campaign.setTlcId(tlcId);
@@ -100,8 +106,15 @@ public class AdminDashboardController {
 			campaign.setAppointmentDate(ApiCrmUtil.parseDate(appointmentDate));
 		}
 		
-		tlcService.updateCampaign(campaign);
-		return "redirect:/admin/";
+		String campaignId = tlcService.updateCampaign(campaign);
+		if(!ApiCrmUtil.isNullOrEmpty(campaignId)) {
+			
+			model.put("msgCss", AlertStyleMessages.SUCCESS.getValue());
+			model.put("msgDetails", campaignId.concat(": ").concat(dkmHelper.get("campaign.update.success")));
+		}
+		
+		model.put("campaignList", tlcService.getAllTlc());
+		return "admin/admindashboard";
 	}
 	
 }
