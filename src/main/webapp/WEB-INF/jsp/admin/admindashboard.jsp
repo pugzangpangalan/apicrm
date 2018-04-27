@@ -91,7 +91,7 @@
 		</div>
 		<button value="LEFT" id="left" ><i class="fa fa-angle-left" style="font-size:60px;"></i></button>
 		<button value="RIGHT" id="right" ><i class="fa fa-angle-right" style="font-size:60px;"></i></button>
-
+		<input type="file" id="fileUploadId" style="display:none;">
 	</div>
 	
 	<script  type="text/javascript">
@@ -150,9 +150,18 @@
 	                 }
 
 	            },
-	            "dom": '<"top"<"marg-left col-sm-9"><"col-sm-1 text-right"B>f>rt<"bottom"ilp><"clear">',
+	            "dom": '<"top"<"marg-left col-sm-8"><"col-sm-2 text-right"B>f>rt<"bottom"ilp><"clear">',
             	"buttons": [
-                     {
+            		
+                    {
+                   	 text:'Import',
+                   	 className: 'btn btn-info',
+                   	 action:  function ( e) {
+                   		e.preventDefault();
+                        $("#fileUploadId").trigger('click');
+                     }
+                    },
+                    {
                     	 extend: 'csv',
                     	 filename: 'Campaign',
                     	 text: "Export CSV",
@@ -203,7 +212,9 @@
 			y.fadeIn(2000);
 		}
 		
-		
+		jQuery("input#fileUploadId").change(function () {
+		    alert(jQuery(this).val())
+		});
 		
 
 	</script>
