@@ -28,24 +28,25 @@
 				<table class="table" id="anxtable" >
 			<thead>  
 					<tr>
-						<th>TLC Id</th>
-						<th>Location / Address</th>
-						<th>Customer Name</th>
-						<th>Contact Number</th>
-						<th>Site Access Information</th>
-						<th>Installation Date</th>
-						<th>Installation Time</th>
-						<th>Scope Document Sent</th>
-						<th>Project Name</th>
-						<th>Chorus Portal Order</th>
-						<th>ICMS Service Order</th>
-						<th>Door-knock Team</th>
-						<th>Status</th>
-						<th>Site Visit Outcome</th>
-						<th>Additional Comments</th>
-						<th>Schedule Once</th>
-						<th>Scoping Document</th>
-						<th>Door-knock Appointment Date</th>
+						<th class="noaction">TLC Id</th>
+						<th class="noaction">Location / Address</th>
+						<th class="noaction">Customer Name</th>
+						<th class="noaction">Contact Number</th>
+						<th class="noaction">Site Access Information</th>
+						<th class="noaction">Installation Date</th>
+						<th class="noaction">Installation Time</th>
+						<th class="noaction">Scope Document Sent</th>
+						<th class="noaction">Project Name</th>
+						<th class="noaction">Chorus Portal Order</th>
+						<th class="noaction">ICMS Service Order</th>
+						<th class="noaction">Door-knock Team</th>
+						<th class="noaction">Status</th>
+						<th class="noaction">Site Visit Outcome</th>
+						<th class="noaction">Additional Comments</th>
+						<th class="noaction">Schedule Once</th>
+						<th class="noaction">Scoping Document</th>
+						<th class="noaction">Door-knock Appointment Date</th>
+						<th class="action"></th>
 						
 					</tr>
 					</thead>
@@ -60,6 +61,7 @@
 							<td class="td-data" contenteditable="true" id="installationDate${campaign.id}">${campaign.date }</td>
 							<td class="td-data" contenteditable="true" id="installationTime${campaign.id}">${campaign.time }</td>
 							<td class="td-data" contenteditable="true" id="scopeDocSent${campaign.id}">${campaign.scopeDocSent }</td>
+							<td class="td-data" contenteditable="true" id="tlcProject${campaign.id}">${campaign.tlcProject.projectName }</td>
 							<td class="td-data" contenteditable="true" id="chorusPortalOrder${campaign.id}">${campaign.chorusPortalOrder }</td>
 							<td class="td-data" contenteditable="true" id="icmsServiceOrder${campaign.id}">${campaign.icmsServiceOrder }</td>
 							<td class="td-data" contenteditable="true" id="team${campaign.id}">${campaign.team.teamName }</td>
@@ -144,9 +146,13 @@
                     	 extend: 'csv',
                     	 filename: 'Campaign',
                     	 text: "Export CSV",
-                    	 className: 'btn btn-success' 
+                    	 className: 'btn btn-success',
+                    	 exportOptions: {
+                             columns: '.noaction'
+                         }
                      }
-                ]
+                ],
+	            "scrollX": true
 	        });
 		});
 	</script>

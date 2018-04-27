@@ -42,7 +42,6 @@
 	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
 	border-collapse: collapse;
 	width: 100%;
-	margin-top: 2%;
 }
 
 #anxtable td, #anxtable th {
@@ -58,7 +57,7 @@
 	background-color: #418a95;
 }
 
-#anxtable th {
+.dataTables_scrollHead th {
 	padding-top: 12px;
 	padding-bottom: 12px;
 	text-align: left;
@@ -153,6 +152,13 @@
 
 .btn{
 	margin-bottom: 5px;
+}
+.table {
+    margin-bottom: 0px;
+}
+
+.bottom{
+	margin-top : 5px;
 }
 
 
