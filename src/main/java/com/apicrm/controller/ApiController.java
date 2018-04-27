@@ -1,11 +1,16 @@
 package com.apicrm.controller;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.xml.bind.DatatypeConverter;
 
@@ -96,11 +101,33 @@ public class ApiController {
         return tokenService.getToken(secretKey);
     }
 	
-	@RequestMapping(value = "/export/{campaignId}", method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/export/{campaignId}", method = RequestMethod.GET)
     @ResponseBody
-    public void exportCampaign(@PathVariable("campaignId") String campaignId) {
-        tlcService.exportCsvFile(campaignId,true);
-    }
+    public void exportCampaign(@PathVariable("campaignId") String campaignId,HttpServletResponse response) {
+        String fileName = tlcService.exportCsvFile(campaignId,true);
+        try {
+            response.setContentType("application/CSV");
+
+            response.addHeader("Content-disposition","attachment; filename="+fileName);
+
+	        OutputStream out = response.getOutputStream();
+	        File file = new File(fileName);
+	        FileInputStream in = new FileInputStream(file);
+	
+	        byte[] buffer = new byte[4096];
+	        int length;
+	        while ((length = in.read(buffer)) > 0){
+	            out.write(buffer, 0, length);
+	        }
+	        in.close();
+	        out.flush();
+        } catch (FileNotFoundException e) {
+        	e.printStackTrace();
+        } catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	
 	public Path toExcel(String value) throws IOException {
 		return Files.write(Paths.get("temp.csv"), DatatypeConverter.parseBase64Binary(value));

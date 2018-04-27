@@ -151,8 +151,8 @@ public class FileImportHelper {
 	public String generateCsvFile(List<Tlc> campaign, String fileName) {
 		FileWriter fileWriter = null;
         try {
-
-            fileWriter = new FileWriter(fileName+".csv");
+        	fileName += ".csv";
+            fileWriter = new FileWriter(fileName);
 			
             
             fileWriter.append(Arrays.asList(HEADERS).stream().collect(Collectors.joining(",")));
