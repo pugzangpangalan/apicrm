@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.apicrm.entity.DkUser;
+import com.apicrm.service.DoorKnockTeamService;
 import com.apicrm.service.UserService;
 import com.apicrm.utils.RequiredChecker;
 import com.apicrm.utils.StringUtils;
@@ -28,6 +29,9 @@ public class RegisterController {
 
 	@Autowired
 	UserService userRegisterService;
+	
+	@Autowired
+	DoorKnockTeamService doorKnockTeamService;
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<?> register(@RequestBody String requestBody, HttpSession session) {
@@ -47,6 +51,7 @@ public class RegisterController {
 					.body(su.genererateReturnMessage("Required Field", required));
 		}
 		DkUser user = gson.fromJson(requestBody, DkUser.class);
+		user.setDoorKnockTeam(doorKnockTeamService.findByTeamName(user.getDoorKnockTeamName()));
 		if (null != userRegisterService.findUserByEmail(user.getEmailAddress())) {
 			return ResponseEntity.status(HttpStatus.FORBIDDEN)
 					.body(su.genererateReturnMessage("Error", "Email address already exists"));

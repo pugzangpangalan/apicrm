@@ -89,138 +89,40 @@
 			
 			</form:form>
 		</div>
-		<button value="LEFT" id="left" ><i class="fa fa-angle-left" style="font-size:60px;"></i></button>
+		<button value="LEFT" id="left" style="display:none;"><i class="fa fa-angle-left" style="font-size:60px; "></i></button>
 		<button value="RIGHT" id="right" ><i class="fa fa-angle-right" style="font-size:60px;"></i></button>
 		<input type="file" id="fileUploadId" style="display:none;">
 	</div>
+<div class="modal fade" role="dialog" id="importModalId">
+		<div class="modal-dialog">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">
+						<span class="glyphicon glyphicon-upload mar-r-10"></span>&nbspUpload file
+					</h4>
+				</div>
+				<div class="modal-body">
+						<div id="fileDivId">
+							</div>
+							
+							<div class="upload-btn-wrapper col-xs-offset-7">
+							  <button class="btn-grey" >Upload a file</button>
+							  <input type="file" id="fileUpload" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"></input>
+							</div>
+					
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cancel</button>
+					<button type="button" class="btn btn-primary" onclick="doUpload();">Upload</button>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	<script src="/js/admin.js"></script>
 	
-	<script  type="text/javascript">
-		function update(id) {
-			var tlcId = $('#tlcId'+id).text();
-			var address = $('#address'+id).text();
-			var customerName = $('#customerName'+id).text();
-			var contactNumber = $('#contactNumber'+id).text();
-			var siteAccessInfo = $('#siteAccessInfo'+id).text();
-			var installationDate = $('#installationDate'+id).text();
-			var installationTime = $('#installationTime'+id).text();
-			var scopeDocSent = $('#scopeDocSent'+id).text();
-			var tlcProject = $('#tlcProject'+id).text();
-			var chorusPortalOrder = $('#chorusPortalOrder'+id).text();
-			var icmsServiceOrder = $('#icmsServiceOrder'+id).text();
-			var team = $('#team'+id).text();
-			var status = $('#status'+id).text();
-			var siteVisitOutcome = $('#siteVisitOutcome'+id).text();
-			var comments = $('#comments'+id).text();
-			var scheduleOnce = $('#scheduleOnce'+id).text();
-			var scopingDocCount = $('#scopingDocCount'+id).text();
-			var appointmentDate = $('#appointmentDate'+id).text();
-			
-			location.href = "./updateCampaign?tlcId=" +tlcId 
-					+ "&address=" +address
-					+ "&customerName=" +customerName
-					+ "&contactNumber=" +contactNumber
-					+ "&siteAccessInfo=" +siteAccessInfo
-					+ "&installationDate=" +installationDate
-					+ "&installationTime=" +installationTime
-					+ "&scopeDocSent=" +scopeDocSent
-					+ "&tlcProject=" +tlcProject
-					+ "&chorusPortalOrder=" +chorusPortalOrder
-					+ "&icmsServiceOrder=" +icmsServiceOrder
-					+ "&team=" +team
-					+ "&status=" +status
-					+ "&siteVisitOutcome=" +siteVisitOutcome
-					+ "&comments=" +comments
-					+ "&scheduleOnce=" +scheduleOnce
-					+ "&scopingDocCount=" +scopingDocCount
-					+ "&appointmentDate=" +appointmentDate;
-		}
-		
-		$(document).ready(function() {
-			$('#anxtable').DataTable({
-	            "iDisplayLength": 10,
-	            "aLengthMenu": [[10, 20, 50, -1], [10, 20, 50, "All"]],
-	            "pagingType": "simple_numbers",
-	            "language": {
-	                searchPlaceholder: "Search",
-	                search: "",
-	                info:           "Showing _START_ to _END_ of _TOTAL_ -",
-	                infoEmpty:      "Showing 0 to 0 of 0 entries",
-	                paginate: {
-	                    previous: "Prev"
-	                 }
-
-	            },
-	            "dom": '<"top"<"marg-left col-sm-8"><"col-sm-2 text-right"B>f>rt<"bottom"ilp><"clear">',
-            	"buttons": [
-            		
-                    {
-                   	 text:'Import',
-                   	 className: 'btn btn-info',
-                   	 action:  function ( e) {
-                   		e.preventDefault();
-                        $("#fileUploadId").trigger('click');
-                     }
-                    },
-                    {
-                    	 extend: 'csv',
-                    	 filename: 'Campaign',
-                    	 text: "Export CSV",
-                    	 className: 'btn btn-success',
-                    	 exportOptions: {
-                             columns: '.noaction'
-                         }
-                     }
-                ],
-	            "scrollX": true
-	        });
-		});
-		
-		$('#left').hover(function () {
-			scrollLeft();
-		});
-
-		$('#right').hover(function () {
-			scrollRight();
-		});
-		
-		$('#left').click(function () {
-			scrollLeft();
-		});
-
-		$('#right').click(function () {
-			scrollRight();
-		});
-		
-		function scrollRight(){
-			var leftPos = $('div.dataTables_scrollBody').scrollLeft();
-		    var rightX = $('div.dataTables_scrollBody').width();
-		    $("div.dataTables_scrollBody").animate({
-		        scrollLeft: rightX
-		    }, 1000,hide($('#right'),$('#left')));
-		}
-		
-		function scrollLeft(){
-			var leftPos = $('div.dataTables_scrollBody').scrollLeft();
-		    $("div.dataTables_scrollBody").animate({
-		        scrollLeft: 0
-		    }, 1000,hide($('#left'),$('#right')));
-		}
-		
-		function hide(x,y){
-			
-			x.fadeOut(2000);
-			y.fadeIn(2000);
-		}
-		
-		jQuery("input#fileUploadId").change(function () {
-		    if(jQuery(this).val() != null){
-		    	
-		    	
-		    }
-		    
-		});
-		
-
-	</script>
 </body>
 </html>
