@@ -135,4 +135,8 @@ function update(id) {
 			$('#fileDivId').empty();
 		}
 		
+		$("#importModalId").on("hidden.bs.modal", function () {
+			clearFileDiv();
+		});
+		
 
