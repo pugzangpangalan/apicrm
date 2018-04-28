@@ -57,7 +57,7 @@ function update(id) {
             	"buttons": [
             		
                     {
-                   	 text:'Import Campaign',
+                   	 text:'Import File',
                    	 className: 'btn btn-info',
                    	 action:  function ( e) {
                    		e.preventDefault();
