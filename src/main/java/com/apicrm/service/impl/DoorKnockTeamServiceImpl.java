@@ -12,12 +12,21 @@ public class DoorKnockTeamServiceImpl implements DoorKnockTeamService {
 
 	@Autowired
 	private DoorKnockTeamRepository doorKnockTeamRepository;
-	
+
+	@Override
 	public DoorKnockTeam findByTeamName(String teamName) {
 		DoorKnockTeam doorKnockTeam = doorKnockTeamRepository.findByTeamName(teamName);
 		return doorKnockTeam != null ? doorKnockTeam : new DoorKnockTeam();
 	}
+
+	@Override
 	public DoorKnockTeam findByTeamId(long teamId) {
 		return doorKnockTeamRepository.getOne(teamId);
+	}
+
+	@Override
+	public DoorKnockTeam save(DoorKnockTeam doorKnockTeam) {
+
+		return doorKnockTeamRepository.save(doorKnockTeam);
 	}
 }

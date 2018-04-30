@@ -11,7 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="team")
+@Table(name = "team")
 public class DoorKnockTeam implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -19,22 +19,28 @@ public class DoorKnockTeam implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "team_id")
 	private long teamId;
-	
+
 	@Column(name = "team_name")
 	private String teamName;
-	
+
 	@Column(name = "email_address")
 	private String emailAddress;
-	
+
 	@Column(name = "status")
 	private String status;
-	
+
 	@Column(name = "door_knocker")
 	private String doorKnocker;
-	
+
 	@Column(name = "scoper")
 	private String scoper;
+
+	public DoorKnockTeam() {
+	}
 	
+	public DoorKnockTeam(String teamName) {
+		this.teamName = teamName;
+	}
 
 	public long getTeamId() {
 		return teamId;
