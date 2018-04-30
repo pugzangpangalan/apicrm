@@ -1,5 +1,6 @@
 package com.apicrm.service;
 
+import java.util.Date;
 import java.util.List;
 
 import com.apicrm.entity.Tlc;
@@ -17,5 +18,9 @@ public interface TlcService {
 	public String updateCampaign(Tlc tlc);
 
 	public List<Tlc> findByTeamName(String teamName);
+
+	public List<Tlc> findScheduledOpportunities(Date date, String team, String status);
+
+	public List<Tlc> getCustomerOpportunities(String team, String status);
 	
 }

@@ -8,7 +8,6 @@ import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -24,12 +23,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.apicrm.entity.Campaign;
 import com.apicrm.entity.DoorKnockTeam;
 import com.apicrm.entity.Tlc;
-import com.apicrm.entity.Campaign;
 import com.apicrm.entity.Token;
-import com.apicrm.service.DoorKnockTeamService;
 import com.apicrm.service.CampaignService;
+import com.apicrm.service.DoorKnockTeamService;
 import com.apicrm.service.TlcService;
 import com.apicrm.service.TokenService;
 import com.google.gson.Gson;
@@ -132,11 +131,6 @@ public class ApiController {
 	public Path toExcel(String value) throws IOException {
 		return Files.write(Paths.get("temp.csv"), DatatypeConverter.parseBase64Binary(value));
 
-	}
-	
-	@RequestMapping(value = "/campaign", method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody List<Tlc> getCampaign() {
-		return tlcService.getAllTlc();
 	}
 
 }

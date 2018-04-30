@@ -1,10 +1,12 @@
 package com.apicrm.service.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.apicrm.common.ApiCrmUtil;
 import com.apicrm.entity.Tlc;
 import com.apicrm.helper.FileImportHelper;
 import com.apicrm.repository.TlcRepository;
@@ -68,6 +70,24 @@ public class TlcServiceImpl implements TlcService {
 	@Override
 	public List<Tlc> findByTeamName(String teamName) {
 		return tlcRepository.findByTeamName(teamName);
+	}
+	
+	@Override
+	public List<Tlc> findScheduledOpportunities(Date date, String team, String status) {
+		return tlcRepository.findScheduledOpportunities(date, team, status);
+	}
+
+	@Override
+	public List<Tlc> getCustomerOpportunities(String team, String status) {
+		List<Tlc> tlcList = null;
+		if (ApiCrmUtil.isNullOrEmpty(status)) {
+			tlcList = getAllTlc();
+		} else {
+			String[] statusNames = status.split(",");
+			tlcList = tlcRepository.findCustomerOpportunities(team, statusNames);
+			
+		}
+		return tlcList;
 	}
 	
 }

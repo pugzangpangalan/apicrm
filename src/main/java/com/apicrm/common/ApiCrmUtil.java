@@ -17,6 +17,15 @@ public class ApiCrmUtil {
 		return null;
 	}
 	
+	public static Date parseFormatterdDate(String date, String format) {
+		try {
+			return new SimpleDateFormat(format).parse(date);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
 	public static boolean isNullOrEmpty(String val) {
 		return val == null || StringUtils.isEmpty(val);
 	}
