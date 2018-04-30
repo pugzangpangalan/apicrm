@@ -87,12 +87,6 @@ public class ApiController {
 	public DoorKnockTeam getTeam(@PathVariable("teamId") String teamId) {
 		return doorKnockTeamService.findByTeamId(Long.valueOf(teamId));
 	}
-
-	@RequestMapping(value = "/opportunity/{id}", method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	@ResponseBody
-	public Tlc getOpportunity(@PathVariable("id") String tlcId) {
-		return tlcService.getTlcByTlcId(tlcId);
-	}
 	
 	@RequestMapping(value = "/token/{secretKey}", method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
@@ -132,5 +126,6 @@ public class ApiController {
 		return Files.write(Paths.get("temp.csv"), DatatypeConverter.parseBase64Binary(value));
 
 	}
+	
 
 }

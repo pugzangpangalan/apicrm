@@ -19,8 +19,11 @@ public interface TlcService {
 
 	public List<Tlc> findByTeamName(String teamName);
 
+
 	public List<Tlc> findScheduledOpportunities(Date date, String team, String status);
 
 	public List<Tlc> getCustomerOpportunities(String team, String status);
+
+	public Tlc updateTlc(Tlc tlc);
 	
 }

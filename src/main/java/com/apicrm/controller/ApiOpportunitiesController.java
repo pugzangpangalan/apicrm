@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -39,6 +40,19 @@ public class ApiOpportunitiesController {
 	@RequestMapping(value = "/customer/{team}/{status}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody List<Tlc> getCustomerOpportunities(@PathVariable("team") String team, @PathVariable("status") String status) {
 		return tlcService.getCustomerOpportunities(team, status);
+	}
+	
+	@RequestMapping(value = "/update", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public Tlc getToken(@RequestBody Tlc tlc) {
+		
+		return tlcService.updateTlc(tlc);
+    }
+
+	@RequestMapping(value = "/opportunity/{id}", method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public Tlc getOpportunity(@PathVariable("id") String tlcId) {
+		return tlcService.getTlcByTlcId(tlcId);
 	}
 	
 }

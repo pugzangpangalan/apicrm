@@ -2,6 +2,7 @@ package com.apicrm.service.impl;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -88,6 +89,15 @@ public class TlcServiceImpl implements TlcService {
 			
 		}
 		return tlcList;
+		
+	}
+	
+	@Override
+	public Tlc updateTlc(Tlc tlc) {
+		Optional<Tlc> tlcDb = tlcRepository.findById(tlc.getId());
+		tlc.deepCopy(tlcDb.get(), tlc);
+		tlcRepository.save(tlcDb.get());
+		return tlcDb.get();
 	}
 	
 }
