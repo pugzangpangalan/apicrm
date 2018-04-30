@@ -89,9 +89,9 @@ public class ApiController {
 		return doorKnockTeamService.findByTeamId(Long.valueOf(teamId));
 	}
 
-	@RequestMapping(value = "/tlc/{tlcId}", method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/opportunity/{id}", method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	public Tlc getTlcByTlcId(@PathVariable("tlcId") String tlcId) {
+	public Tlc getOpportunity(@PathVariable("id") String tlcId) {
 		return tlcService.getTlcByTlcId(tlcId);
 	}
 	
