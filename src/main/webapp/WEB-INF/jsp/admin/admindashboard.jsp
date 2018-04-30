@@ -59,7 +59,7 @@
 					</tr>
 					</thead>
 					<tbody>
-					<c:forEach items="${campaign }" var="tlc">
+					<c:forEach items="${campaignList }" var="tlc">
 						<tr>
 							<td class="td-data" id="tlcId${tlc.id}">${tlc.tlcId }</td>
 							<td class="td-data" contenteditable="true" id="address${tlc.id}">${tlc.address }</td>
@@ -67,7 +67,7 @@
 							<td class="td-data" contenteditable="true" id="contactNumber${tlc.id}">${tlc.contactNumber }</td>
 							<td class="td-data" contenteditable="true" id="siteAccessInfo${tlc.id}">${tlc.siteAccessInfo }</td>
 							<td class="td-data" contenteditable="true" id="installationDate${tlc.id}">${tlc.formattedInstallationDate }</td>
-							<td class="td-data" contenteditable="true" id="installationTime${tlc.id}">${tlc.time }</td>
+							<td class="td-data" contenteditable="true" id="installationTime${tlc.id}">${tlc.installationTime }</td>
 							<td class="td-data" contenteditable="true" id="scopeDocSent${tlc.id}">${tlc.scopeDocSent }</td>
 							<td class="td-data" contenteditable="true" id="tlcProject${tlc.id}">${tlc.campaign.projectName }</td>
 							<td class="td-data" contenteditable="true" id="chorusPortalOrder${tlc.id}">${tlc.chorusPortalOrder }</td>

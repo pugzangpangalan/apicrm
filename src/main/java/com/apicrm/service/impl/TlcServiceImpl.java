@@ -65,4 +65,9 @@ public class TlcServiceImpl implements TlcService {
 		return campaign.getTlcId();
 	}
 	
+	@Override
+	public List<Tlc> findByTeamName(String teamName) {
+		return tlcRepository.findByTeamName(teamName);
+	}
+	
 }

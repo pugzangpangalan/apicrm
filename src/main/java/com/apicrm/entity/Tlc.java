@@ -75,7 +75,7 @@ public class Tlc implements Serializable {
 	private Date appointmentDate;
 	
 	@ManyToOne(optional = false)
-	@JoinColumn(name = "campaign_id", referencedColumnName = "campaign_id")
+	@JoinColumn(name = "campaign_name", referencedColumnName = "campaign_name")
 	private Campaign campaign;
 	
 	@ManyToOne(cascade = CascadeType.ALL)

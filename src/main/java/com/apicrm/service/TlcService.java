@@ -15,5 +15,7 @@ public interface TlcService {
 	public String exportCsvFile(String campaignId, boolean openAfterCreate);
 
 	public String updateCampaign(Tlc tlc);
+
+	public List<Tlc> findByTeamName(String teamName);
 	
 }

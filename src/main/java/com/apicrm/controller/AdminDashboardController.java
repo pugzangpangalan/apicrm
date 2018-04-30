@@ -54,12 +54,12 @@ public class AdminDashboardController {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		DkUser dkUser = userService.findUserByEmail(authentication.getName());
 		
-		if(dkUser != null && !ApiCrmUtil.isNullOrEmpty(dkUser.getDoorKnockTeamName())) {
-			
-		} else {
-			model.put("campaignList", tlcService.getAllTlc());
+		List<Tlc> tlcList = tlcService.getAllTlc();
+		if(dkUser != null/* && !ApiCrmUtil.isNullOrEmpty(dkUser.getDoorKnockTeamName())*/) {
+			tlcList = tlcService.findByTeamName(dkUser.getDoorKnockTeam().getTeamName());
 		}
 		
+		model.put("campaignList", tlcList);
 		return "admin/admindashboard";
 	}
 	
