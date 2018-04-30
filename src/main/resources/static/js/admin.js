@@ -117,9 +117,26 @@ function update(id) {
 		
 		
 		function  doUpload(){
-			alert($('#fileUpload').val());
-			alert('do upload code here');
-			$('#importModalId').modal('hide');
+			var input = document.getElementById("fileUpload");
+			var fReader = new FileReader();
+			fReader.readAsDataURL(input.files[0]);
+			fReader.onloadend = function(event){
+			    $.ajax({
+		    		url : '/api/crm/extract',
+		    		data : JSON.stringify({"file":event.target.result}),
+		    		method : "POST",
+		    		contentType : 'application/json',
+		    		success : function(data) {
+		    			$('#importModalId').modal('hide');
+		    			location.reload();
+		    		},
+		    		error : function(data) {
+		    			alert("error loading image");
+		    		}
+		          	
+			})
+			}
+			
 		}
 		
 		$('#fileUpload').change(function(){
